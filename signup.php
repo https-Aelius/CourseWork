@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>HYDRAPEAK</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -42,11 +42,38 @@
 
     <!--Body of the website-->
     <main>
-        <h2>Login</h2>
-        <form action = "login_logic.php">
-            <input type = "text" name = 'username' placeholder = 'Username' value = "<?php echo $username; ?>" required><br>
-            <input type = "password" name = 'password' placeholder = 'password' required><br>
-            <button type = "submit" class = 'btn btn-primary' id = 'loginButton'>Login</button>
+        <h2>Sign Up</h2>
+        <form action = "signup_logic.php" method = 'POST'>
+
+
+            <h4>
+                Name
+            </h4>
+            <input type = "text" placeholder = "Username" name = "username" required>
+            <input type = 'text' placeholder = 'Forename' name = 'forename' required>
+            <input type = 'text' placeholder = 'Surname' name ='surname' required>
+            <br>
+
+            
+            <h4>
+                Email
+            </h4>
+            <input type = 'text' placeholder = 'Email' name = 'email' required>
+
+
+            <h4>
+                Password
+            </h4>
+            <div>
+                <input name = 'password' type = 'password' id = 'password' placeholder = 'Password' required>
+                <i class = 'fa-solid fa-eye' id = 'togglePassword' style = 'cursor: pointer;'></i>
+            </div>
+            <div>
+                <input name = 'confirm' type = 'password' id='confirmPassword' placeholder='Confirm Password' required>
+                <i class = 'fa-solid fa-eye' id = 'toggleConfirmPassword' style = 'cursor: pointer;'></i>
+            </div>
+            <br>
+            <button type = 'submit' id = 'signUpButton'>Sign Up</button>
         </form>
     </main>
 
