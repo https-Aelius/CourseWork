@@ -31,7 +31,23 @@
 html{
     box-sizing: border-box;
     background-color: #f1faff;
+    zoom:0.95;
 }
+
+@media screen and (-webkit-min-device-pixel-ratio:0){
+    body{
+        zoom:0.95;
+    }
+}
+
+@-moz-document url-prefix(){
+    body{
+        transform:scale(0.95);
+        transform-origin:top left;
+        width:111.111%;
+    }
+}
+
 .navbar, .navbar-default{
     background-color: #ffffff !important;
     border: none !important;
