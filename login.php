@@ -15,7 +15,7 @@
 <body>
     <nav class = "navbar navbar-default navbar-fixed-top">  
         <div class = "navbar-brand" style = "font-size:20px;">
-            HYDRAPEAK
+            BOTTLELEAK
         </div>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">

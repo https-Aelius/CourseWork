@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HYDRAPEAK</title>
+    <title>Sign Up</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -15,7 +15,7 @@
 <body>
     <nav class = "navbar navbar-default navbar-fixed-top">  
         <div class = "navbar-brand" style = "font-size:20px;">
-            HYDRAPEAK
+            BOTTLELEAK
         </div>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
