@@ -127,3 +127,7 @@ html{
     height:20px;
     border-radius:7px;
 }
+main{
+    background-color: #f1faff;
+    padding-top:60px;
+}
