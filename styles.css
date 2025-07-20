@@ -131,3 +131,19 @@ main{
     background-color: #f1faff;
     padding-top:60px;
 }
+main form{
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: center;
+}
+main h2{
+    text-align:center;
+    margin-bottom:8px;
+}
+main form input[type="text"]{
+    margin-bottom: 8px;
+    border-radius:4px;
+    border:1px solid #03045e;
+    width:220px;
+}
