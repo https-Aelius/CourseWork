@@ -147,6 +147,7 @@ main form{
     justify-content: center;
     width:100%;
     height:100%;
+    margin:0;
 }
 
 main h4{
@@ -172,9 +173,9 @@ main .innerContainer{
     border-top:1px solid #03045e;
 }
 
-main .container{
-    padding-left:20px;
-    padding-right:20px;
+main .loginContainer{
+    padding-left:50px;
+    padding-right:50px;
     padding-top:32px;
     padding-bottom:112px;
     box-sizing:border-box;
@@ -189,10 +190,11 @@ main .container{
 form{
     display: block;
     unicode-bidi: isolate;
+    margin:0;
 }
 
 @media screen and (max-width:990px){
-    main .container{
+    main .loginContainer{
         display:flex;
         flex-direction:column-reverse;
     }
@@ -239,6 +241,9 @@ main form input[type='text']{
     border:1px solid #03045e;
     width:100%;
     min-height:40px;
+    padding: 15px 15px 15px;
+    margin: 10px 10px 10px 10px;
+
 }
 
 main form input[type='password']{
@@ -247,6 +252,8 @@ main form input[type='password']{
     border:1px solid #03045e;
     width:100%;
     min-height:40px;
+    padding: 15px 15px 15px;
+    margin: 10px 10px 10px 10px;
 }
 
 .required{
@@ -327,4 +334,42 @@ label{
     color:#03045e !important;
     border:1px solid #03045e;
 
+}
+.signupContainer{
+    padding:36px 15px 100px 15px;
+    container-type:inline-size;
+
+}
+.passwordContainer{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+}
+.password-toggle{
+    position:absolute;
+    right:15px;
+    cursor:pointer;
+    color:#03045e;
+
+}
+.password-toggle:hover{
+    color:#2c2c2c;
+}
+@media screen and (max-width: 2560px) {
+    .signupContainer {
+        margin:0 55rem 0 55rem;
+        padding: 36px 15px 100px 15px;
+    }
+}
+
+@media screen and (max-width: 1440px){
+    .signupContainer{
+        margin: 0 55rem 0 55rem;
+        padding: 36px 15px 100px 15px;
+    }
+}
+
+.signupContainer h3{
+    padding-top:20px;
 }

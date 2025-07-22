@@ -11,6 +11,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <nav class = "navbar navbar-default navbar-fixed-top">  
@@ -44,39 +46,49 @@
 
     <!--Body of the website-->
     <main>
-        <h2>Sign Up</h2>
-        <form action = "signup_logic.php" method = 'POST'>
+        <div class="innerContainer">
+            <h4>Home / Account / Sign Up </h4>
+            <h1>Sign Up</h1>
+        </div>
+        <div class="signupContainer">
 
 
-            <h4>
-                Name
-            </h4>
-            <input type = "text" placeholder = "Username" name = "username" required>
-            <input type = 'text' placeholder = 'Forename' name = 'forename' required>
-            <input type = 'text' placeholder = 'Surname' name ='surname' required>
-            <br>
 
-            
-            <h4>
-                Email
-            </h4>
-            <input type = 'text' placeholder = 'Email' name = 'email' required>
+            <form action = "signup_logic.php" method = 'POST'>
 
 
-            <h4>
-                Password
-            </h4>
-            <div>
-                <input name = 'password' type = 'password' id = 'password' placeholder = 'Password' required>
-                <i class = 'fa-solid fa-eye' id = 'togglePassword' style = 'cursor: pointer;'></i>
-            </div>
-            <div>
-                <input name = 'confirm' type = 'password' id='confirmPassword' placeholder='Confirm Password' required>
-                <i class = 'fa-solid fa-eye' id = 'toggleConfirmPassword' style = 'cursor: pointer;'></i>
-            </div>
-            <br>
-            <button type = 'submit' id = 'signUpButton'>Sign Up</button>
-        </form>
+                <h3>
+                    Name
+                </h3>
+                <input type = "text" placeholder = "Username" name = "username" required>
+                <input type = 'text' placeholder = 'Forename' name = 'forename' required>
+                <input type = 'text' placeholder = 'Surname' name ='surname' required>
+                <br>
+
+                
+                <h3>
+                    Email
+                </h3>
+                <input type = 'text' placeholder = 'Email' name = 'email' required>
+
+
+                <h3>
+                    Password
+                </h3>
+                <div class = "passwordContainer">
+                    <input name = 'password' type = 'password' id = 'password' placeholder = 'Password' required>
+                    <i class = 'fa-solid fa-eye' id = 'togglePassword' style = 'cursor: pointer;'></i>
+                </div>
+                <div class = "passwordContainer">
+                    <input name = 'confirm' type = 'password' id='confirmPassword' placeholder='Confirm Password' required>
+                    <i class = 'fa-solid fa-eye' id = 'toggleConfirmPassword' style = 'cursor: pointer;'></i>
+                </div>
+                <br>
+                <button type = 'submit' id = 'signUpButton' class = 'btn btn-sixth'>Sign Up</button>
+            </form>
+
+        </div>
+        
     </main>
 
     <!--Bottom of navbar-->
