@@ -44,12 +44,17 @@
 
     <!--Body of the website-->
     <main>
-        <h2>Login</h2>
+        <div class="topSection">
+            <h1>Login</h1>
+        </div>
+        <div class="lowerSection">
         <form action = "login_logic.php">
             <input type = "text" name = 'username' placeholder = 'Username' value = "<?php echo $username; ?>" required><br>
             <input type = "password" name = 'password' placeholder = 'password' required><br>
             <button type = "submit" class = 'btn btn-primary' id = 'loginButton'>Login</button>
         </form>
+        </div>
+        
     </main>
 
     <!--Bottom of navbar-->
