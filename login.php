@@ -44,15 +44,43 @@
 
     <!--Body of the website-->
     <main>
-        <div class="topSection">
+        <div class="innerContainer">
+            <h4>Home / Account </h4>
             <h1>Login</h1>
         </div>
-        <div class="lowerSection">
-        <form action = "login_logic.php">
-            <input type = "text" name = 'username' placeholder = 'Username' value = "<?php echo $username; ?>" required><br>
-            <input type = "password" name = 'password' placeholder = 'password' required><br>
-            <button type = "submit" class = 'btn btn-primary' id = 'loginButton'>Login</button>
-        </form>
+        <div class="container">
+            <div class="imgColumn">
+                <img src = 'premium_photo-1664527305901-db3d4e724d15.avif'>
+            </div>
+            <div class = "loginColumn">
+                <form action = "login_logic.php">
+                    <div class="loginForm">
+                        <label class = 'loginInputs'>
+                            <span>
+                                EMAIL
+                                <span class = "required">*</span>
+                            </span>
+                            
+                            <input type = "text" name = 'username' placeholder = '' value = "<?php echo $username; ?>" required><br>
+                        </label>
+                        <label class = 'loginInputs'>
+                            <span>
+                                PASSWORD
+                                <span class = "required">*</span>
+                            </span>
+                            <input type = "password" name = 'password' placeholder = '' required><br>
+                        </label>
+                    </div>
+                    <div class="belowLoginForm">
+                        <button type = "submit" class = 'btn btn-sixth' style = 'margin-top:32px;' id = 'loginButton'>Login</button>
+                    </div>
+                    <div class="otherLinks">
+                        <a href='signup.php' class = 'loginSimpleLink'>Sign Up</a>
+                    </div>
+                    
+                </form>
+            </div>
+
         </div>
         
     </main>
