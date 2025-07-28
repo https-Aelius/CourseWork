@@ -21,26 +21,26 @@ if ($pwd !== $confirmPassword){
 try{
     $conn-> beginTransaction();
 
-    //password hashing
-    $hashPassword = password_hash($pwd, PASSWORD_BCRYPT);
-
-    $sql = 'INSERT INTO Users (username, forename, surname, email, password, role) VALUES (:username, :forename, :surname, :email, :password, :role)';
+    $sql = 'INSERT INTO Users (userID,  username, forename, surname, email, password, role) VALUES (null, :username, :forename, :surname, :email, :password, 1)';
     $stmt = $conn->prepare($sql);
+
+
+    $hashPassword = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
     $stmt -> bindParam(':username', $_POST['username']);
     $stmt->bindParam(':forename', $_POST['forename']);
     $stmt->bindParam(':surname', $_POST['surname']);
     $stmt->bindParam(':email', $_POST['email']);
     $stmt->bindParam(':password', $hashPassword);
-    $stmt->bindParam(':role', $_POST['role'] ?? '1'); // Default role is '1' if not set
     $stmt->execute();
 
     $conn->commit(); 
-
+    echo"hellowwww";
     //redirecting to the login page after successful signup containing the username
-    header('Location: login.php= ' . urlencode['username']);
+    header('Location: login.php');
 } catch (PDOException $e) {
     $conn->rollBack(); //going back if there is an error during transaction
     die('Error: ' . $e->getMessage());
 }
+
 
 ?>

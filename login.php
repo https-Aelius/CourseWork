@@ -48,16 +48,16 @@
             <h4>Home / Account </h4>
             <h1>Login</h1>
         </div>
-        <div class="container">
+        <div class="loginContainer">
             <div class="imgColumn">
                 <img src = 'premium_photo-1664527305901-db3d4e724d15.avif'>
             </div>
             <div class = "loginColumn">
-                <form action = "login_logic.php">
+                <form action = "login_logic.php" method = "POST">
                     <div class="loginForm">
                         <label class = 'loginInputs'>
                             <span>
-                                EMAIL
+                                USERNAME
                                 <span class = "required">*</span>
                             </span>
                             

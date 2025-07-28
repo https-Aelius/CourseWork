@@ -6,12 +6,12 @@ $stmt = $conn->prepare("
     DROP TABLE IF EXISTS Users;
     CREATE TABLE Users (
             userID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            role TINYINT(1) DEFAULT 1,
+            username VARCHAR(300) NOT NULL,
+            forename TINYTEXT NOT NULL,
+            surname TINYTEXT NOT NULL,
             email VARCHAR(50) UNIQUE NOT NULL,
             password VARCHAR(300) NOT NULL,
-            username VARCHAR(300) NOT NULL,
-            firstname TINYTEXT NOT NULL,
-            surname TINYTEXT NOT NULL,
+            role TINYINT(1) DEFAULT 1,
             telephone VARCHAR(11) NOT NULL,
             postcode VARCHAR(7) NOT NULL,
             addressLine VARCHAR(20) NOT NULL,

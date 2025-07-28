@@ -14,11 +14,12 @@ $stmt->bindParam(':username', $username, PDO::PARAM_STR);
 $stmt->execute();
 $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$hash = trim($user['password']);
+$hash = trim($user['password']); //this line, I have to somehow get the unhashed password from this line!!!!!
 
 if ($user){
     echo('User Found <br>');
     echo($user['password'].'br');
+    echo'<br>';
     echo $password;
     echo('<br>');
     if (password_verify($password, $hash)){
