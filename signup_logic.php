@@ -25,7 +25,7 @@ try{
     $stmt = $conn->prepare($sql);
 
 
-    $hashPassword = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
+    $hashPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
     $stmt -> bindParam(':username', $_POST['username']);
     $stmt->bindParam(':forename', $_POST['forename']);
     $stmt->bindParam(':surname', $_POST['surname']);
@@ -34,7 +34,6 @@ try{
     $stmt->execute();
 
     $conn->commit(); 
-    echo"hellowwww";
     //redirecting to the login page after successful signup containing the username
     header('Location: login.php');
 } catch (PDOException $e) {
