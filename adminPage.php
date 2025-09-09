@@ -95,6 +95,14 @@
                         <div class="customColumn">
                             <h3>Products & Stock</h3>
                             <p>[the details......]</p>
+                            <div class="customColumnBottom">
+                                <form action='addProductPage.php' class ='adminPageButtons'>
+                                    <button class="btn btn-sixth" type = 'submit'>Add Product</button>
+                                </form>
+                                <form action = 'updateStockPage.php' class = 'adminPageButtons'>
+                                    <button class="btn btn-sixth" type='submit'>Update Stock</button>
+                                </form>
+                            </div>
                         </div>
                         
                     </div>

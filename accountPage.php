@@ -163,16 +163,12 @@
                                         }
                                     ?>
                                     <div class = "passwordContainer">
-                                        <input name = 'currentPassword' type = 'password' id = 'currentPassword' placeholder = 'Enter Current Password' required>
+                                        <input name = 'currentPassword' type = 'password' id = 'currentPassword' placeholder = 'Enter Current Password'>
                                         <i class = 'fa-solid fa-eye' id = 'togglePassword' style = 'cursor: pointer;'></i>
                                     </div>
                                     <div class = "passwordContainer">
-                                        <input name = 'newPassword' type = 'password' id='newPassword' placeholder='New Password' required>
+                                        <input name = 'newPassword' type = 'password' id='newPassword' placeholder='New Password'>
                                         <i class = 'fa-solid fa-eye' id = 'toggleConfirmPassword' style = 'cursor: pointer;'></i>
-                                    </div>
-                                    <!--Test for changing password-->
-                                    <div class="passwordContainer">
-                                        <?php echo($password)?>
                                     </div>
                                     <button type='submit' class = 'btn btn-sixth'>Save</button>
                                     <!--remember: data-dismiss='modal'-->
@@ -182,7 +178,6 @@
                                 <!--End of the form-->
                         </div>
                         <div class="modal-footer">
-                            
                         </div>
                     </div>
                 </div>
@@ -202,7 +197,75 @@
                         <!--记得要写php code -->
                             <div class="customColumn">
                                 <h3>Account Details</h3>
-                                <p>[the details......]</p>
+                                
+                                    <?php
+                                    $stmt = $conn->prepare("SELECT * FROM Users WHERE userID=:userID");
+                                    $stmt->bindParam(':userID', $_SESSION['userID']);
+                                    $stmt->execute();
+                                    $results = $stmt->fetchAll();
+    
+                                    $stmt->execute();
+                                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        $username = $row['username'];
+                                        $forename = $row['forename'];
+                                        $surname = $row['surname'];
+                                        $email = $row['email'];
+                                        $password = $row['password'];
+                                        $telephone = $row['telephone'];
+                                        $postcode = $row['postcode'];
+                                        $addressLine = $row['addressLine'];
+                                        $cardNo = $row['cardNo'];
+                                        $cardName = $row['cardName'];
+                                        $cardExpiry = $row['cardExpiry'];
+                                        $cardCVC = $row['cardCVC'];
+                                    }
+                                    ?>
+                                     <div class="form-group row">
+                                            <label>Username</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($username)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Forename</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($forename)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Surname</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($surname)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label>Email</label>
+                                        <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($email)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Telephone</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($telephone)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Postcode</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($postcode)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Address Line</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($addressLine)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Card Number</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardNo)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Card Name</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardName)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Card Expiry</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardExpiry)?>'>
+                                    </div>
+                                    <div class="form-group row">
+                                            <label>Card CVC</label>
+                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardCVC)?>'>
+                                        </div>
+                                        
+
                                 <button type = 'button' class = 'btn btn-sixth' data-toggle='modal' data-target='#myModal'>Edit</button>
                             </div>
                     </div>

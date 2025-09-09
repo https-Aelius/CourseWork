@@ -37,7 +37,7 @@ $stmt=$conn->prepare("
             soldOut BOOL NOT NULL,
             price FLOAT(4,2) NOT NULL,
             quant VARCHAR(50) NOT NULL,
-            type VARCHAR(50) NOT NULL,
+            productType VARCHAR(50) NOT NULL,
             itemSold VARCHAR(50) NOT NULL            
         )
 ");
@@ -85,13 +85,14 @@ $stmt->execute();
 $stmt->closeCursor();
 echo("<br>Review table completed");
 //types of product table
-/* $stmt=$conn->prepare("
+$stmt=$conn->prepare("
         DROP TABLE IF EXISTS Types;
         CREATE TABLE Types (
-            type TINYTEXT NOT NULL
+            typeID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            productType VARCHAR(50) NOT NULL
         )
 ");
 $stmt->execute();
 $stmt->closeCursor();
-echo("<br>Types table completed"); */
+echo("<br>Types table completed");
 ?>

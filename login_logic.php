@@ -46,24 +46,24 @@ if ($user){
 
         //now redirecting the user based on their role
         if ($user['role'] ==1 ){
-            //header('Location: mainPage.php');
+            header('Location: mainPage.php');
             exit();
 
         } elseif ($user['role'] ==2 ){
 
-            //header('Location: adminPage.php');
+            header('Location: adminPage.php');
             exit();
 
 
         } else{
-            //header('Location: errorPage.php');
+            header('Location: errorPage.php');
             exit();
             echo $user['role'];
             echo 'else';
         }
 
     } else{
-        //header("Location: login.php");
+        header("Location: login.php");
         $_SESSION['Message1'] = "<p style = 'color:red;'>Invalid Password</p>";
         exit();
 
@@ -103,7 +103,7 @@ if ($logEmail){
         }
 
     } else{
-        //header("Location: login.php");
+        header("Location: login.php");
         $_SESSION['Message1'] = "<p style = 'color:red;'>Invalid Password</p>";
         exit();
     }
@@ -111,7 +111,7 @@ if ($logEmail){
 
 else{
 
-    //header('Location: login.php');
+    header('Location: login.php');
     $_SESSION['Message2'] = "<p style = 'color:red;'>User not found</p>";
     exit();
 }
