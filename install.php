@@ -32,8 +32,8 @@ $stmt=$conn->prepare("
             itemID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(50) NOT NULL,
             description VARCHAR(1000) NOT NULL,
-            productImage VARCHAR(100) NOT NULL,
-            dimensionImage VARCHAR(100) NOT NULL,
+            productImage VARCHAR(100) NULL,
+            dimensionImage VARCHAR(100) NULL,
             soldOut BOOL NOT NULL,
             price FLOAT(4,2) NOT NULL,
             quant VARCHAR(50) NOT NULL,
@@ -95,4 +95,23 @@ $stmt=$conn->prepare("
 $stmt->execute();
 $stmt->closeCursor();
 echo("<br>Types table completed");
+
+//inserting test Users
+$stmt = $conn->prepare("INSERT INTO Users (username, forename, surname, email, password, role, telephone, postcode, addressLine, cardNo, cardName, cardExpiry, cardCVC)
+    VALUES ('jdoe123', 'john', 'doe', 'johndoe@example.com', 'SecurePass1!', '1', '07123456789', 'AB123CD', '123 Example Street', '1234567812345678', 'John Doe', '08/27', '123')");
+$stmt->execute();
+echo '<br>successfully created test User';
+//inserting admin user
+$stmt = $conn->prepare("INSERT INTO Users (username, forename, surname, email, password, role, telephone, postcode, addressLine, cardNo, cardName, cardExpiry, cardCVC)
+    VALUES ('admin01', 'Alice', 'Admin', 'admin@example.com', 'AdminPass1!', '2', '07111111111', 'AD123MN', '1 Admin Road', '1111222233334444', 'Alice Admin', '12/30', '321')");
+$stmt->execute();
+echo '<br>successfully created test User';
+
+
+//this goes last
+$conn=null;
+
+
+
 ?>
+

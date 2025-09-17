@@ -94,7 +94,26 @@
                     <!--记得要写php code -->
                         <div class="customColumn">
                             <h3>Products & Stock</h3>
-                            <p>[the details......]</p>
+                            <div class="productsQuickView" data-bs-spy='scroll'>
+                                <?php
+                                    $stmt = $conn->prepare("SELECT * FROM Products");
+                                    $stmt->execute();
+                                    while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                        $name = $row['name'];
+                                        $quant = $row['quant'];
+                                        $itemSold = $row['itemSold'];
+                                        $itemID= $row['itemID'];
+
+                                        echo "<div class='productItem' style='margin-bottom:10px;'>
+                                                <p><b>$name</b></p>
+                                                <p>Stock: $quant</p>
+                                                <p>Items Sold: $itemSold</p>
+                                            </div>";   
+                                        
+                                    }
+
+                                ?>
+                            </div>
                             <div class="customColumnBottom">
                                 <form action='addProductPage.php' class ='adminPageButtons'>
                                     <button class="btn btn-sixth" type = 'submit'>Add Product</button>

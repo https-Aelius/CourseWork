@@ -56,120 +56,169 @@
     </nav>
 
     <main class='addProductPageMain'>
-
-        <div class="row">
-            <div class="col-md-4">
-                <div class="accountTop" style='height:10%; width:90%; margin-left:30px;' >
-                    <h2 style='margin-top:5vh; margin-bottom:5vh; margin-left:10px; color:white;'>Add New Product</h2>
-                </div>
-
-                <form action='addProduct_logic.php' method='post' style='height:10%; margin-left:30px; width:96%;'>
-                    <input type='text'  class='listProduct' name='title' placeholder='Enter Name Here...' style='border-radius:50px; border:3px solid #03045e; height:100%; font-size:30px; width:95%; margin-left:0; margin-right:0;'required>
-                </form>
-
-                <div class="listProductForm">
-                    <div class="custom-class justify-content-centre">
-                        <div class="mb-3">
-                            <form action="addProduct_logic.php" method='post' enctype='multipart/form-data' style='height:10%; width:96%; align-items:centre;'>
-                                <label for="fileToUpload1" class="file-upload-button" style='font-size:22px; font-weight:normal; border-radius:30px; height:100px;'>
-                                    <span class='file-upload-button-label'>Click to Upload Image</span>
-                                </label>
-                                <input style='z-index:-5;'name="file-to-upload" type="file" id="fileToUpload1" class='file-to-upload-input' onchange='previewImage()'>
-                                <br><br>
-                                <img id='imagePreview1' src=''>
-                                <!--adding JS to preview the image-->
-                                <script>
-                                        function previewImage() {
-                                        const fileInput = document.getElementById('fileToUpload1');
-                                        const imagePreview = document.getElementById('imagePreview2');
-
-                                        const file = fileInput.files[0];
-                                        if (file) {
-                                            const reader = new FileReader();
-                                            reader.onload = function(e) {
-                                                imagePreview.src = e.target.result;
-                                            }
-                                                reader.readAsDataURL(file);
-                                            } else {
-                                                imagePreview.src = ''; //ensuring no image is shown if none is selected, but this shouldn't happen since I put required in the input box 
-                                            }
-                                        }
-                                </script>
-
-                            </form>
-                            
+        <form action='addProduct_logic.php' method='POST' enctype='multipart/form-data' style='width:100%; height:100%;'>
+            <div class="container-fluid" style='width:100%;'>
+                <div class="row" style='width:100%; height:100%;'>
+                    <div class="col-md-4">
+                        <div class="accountTop" style='height:10%; width:90%; margin-left:30px;' >
+                            <h2 style='margin-top:5vh; margin-bottom:5vh; margin-left:10px; color:white;'>Add New Product</h2>
                         </div>
-                        
-                                
-                    </div>
 
-                </div>
-                <div class="listProductForm" style='margin-top:150px;'>
-                    <div class="custom-class justify-content-centre">
-                        <div class="mb-3">
-                                <form action="addProduct_logic.php" method='post' enctype='multipart/form-data' style='height:10%; width:96%; align-items:centre;'>
-                                        <label for="fileToUpload2" class="file-upload-button" style='font-size:22px; font-weight:normal; border-radius:30px; height:100px;'>
-                                            <span class='file-upload-button-label'>Click to Upload Dimensions</span>
+                        <div id='form-general-name' style='height:10%; margin-left:30px; width:96%;'>
+                            <input type='text'  class='listProduct' name='title' placeholder='Enter Name Here...' style='border-radius:50px; border:3px solid #03045e; height:100%; font-size:30px; width:95%; margin-left:0; margin-right:0;'required>
+                        </div>
+
+                        <div class="listProductForm">
+                            <div class="custom-class justify-content-centre">
+                                <div class="mb-3">
+                                    <div id='form-general-image1' style='height:10%; width:96%; align-items:centre;'>
+                                        <label for="fileToUpload1" class="file-upload-button" style='font-size:22px; font-weight:normal; border-radius:30px; height:50%;'>
+                                            <span class='file-upload-button-label'>Click to Upload Image</span>
                                         </label>
-                                        <input style='z-index:-5;'name="file-to-upload" type="file" id="fileToUpload2" class='file-to-upload-input' onchange='previewImage()'>
+                                        <input style='z-index:-100; display:none;'name="fileToUpload1" type="file" id="fileToUpload1" class='file-to-upload-input' onchange='previewImage1()'>
                                         <br><br>
-                                        <img id='imagePreview2' src=''>
                                         <!--adding JS to preview the image-->
                                         <script>
-                                                function previewImage() {
-                                                const fileInput = document.getElementById('fileToUpload2');
-                                                const imagePreview = document.getElementById('imagePreview2');
+                                                function previewImage1() {
+                                                    const fileInput1 = document.getElementById('fileToUpload1');
+                                                    const imagePreview1 = document.getElementById('imagePreview1');
 
-                                                const file = fileInput.files[0];
-                                                if (file) {
-                                                    const reader = new FileReader();
-                                                    reader.onload = function(e) {
-                                                        imagePreview.src = e.target.result;
+                                                    const file = fileInput1.files[0];
+                                                    if (file) {
+                                                        const reader = new FileReader();
+                                                        reader.onload = function(e) {
+                                                            imagePreview1.src = e.target.result;
+                                                        }
+                                                            reader.readAsDataURL(file);
+                                                        } else {
+                                                            imagePreview1.src = ''; //ensuring no image is shown if none is selected, but this shouldn't happen since I put required in the input box 
+                                                        }
+                                                        imagePreview1.style='z-index:10;'
+                                                        imagePreview1.style='max-height:27.5vh;'
                                                     }
-                                                        reader.readAsDataURL(file);
-                                                    } else {
-                                                        imagePreview.src = ''; //ensuring no image is shown if none is selected, but this shouldn't happen since I put required in the input box 
-                                                    }
-                                                }
-                                    </script>
-                                </form>
+                                            </script>
+
+                                        </div>
+                                    
+                                </div>
+                                <img id='imagePreview1' src=''>
+                                
+                                        
                             </div>
-                    </div>
-                </div>
-                <!--Using enctype multipart since I am importing files into the database -->
-                
-            </div>
-            <div class="col-md-4">
-                <form action='addProduct_logic.php' method='post' style='height:70%; width:100%;'>
-                    <div class="custom-column" style='height:72vh; width:100%;'>
-                        <textarea name="description" type='text' class='descriptionTextArea' placeholder='Enter Description here...' required></textarea>
-                    </div>
-                    <input type="text" class='inputForPrice' name='price' placeholder='Enter Price here...' style='border-radius:50px;'required>
-                </form>
-            </div>
-            <div class="col-md-4">
-            <form action='addProduct_logic.php' method='post' style='height:70%; width:100%;'>
-                <div class="custom-column" style='height:72vh; width:100%;'>
-                    <select name="selectedType" id="dropdownMenuButton" class='btn btn-secondary dropdown-toggle' data-toggle='dropdown' style='margin-bottom:150px;'>
-                        <option selected disabled>Select Type</option>
-                        <?php
-                        include_once('connection.php');
-                        $stmt = $conn->prepare('SELECT productType FROM Types');
-                        $stmt->execute();
-                        while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
-                            echo('<option value = ".$row["productType"]">')
-                        }
-                        ?>
 
-                    </select>
+                        </div>
+                        <div class="listProductForm2" style='width:95%;'>
+                            <div class="custom-class justify-content-centre">
+                                <div class="mb-3">
+                                        <div id='form-general-image2' style='height:10%; width:100%; align-items:centre;'>
+                                                <label for="fileToUpload2" class="file-upload-button" style='font-size:21px; font-weight:normal; border-radius:30px; height:50%;'>
+                                                    <span class='file-upload-button-label'>Click to Upload Dimensions</span>
+                                                </label>
+                                                <input style='z-index:-100; display:none;' name="fileToUpload2" type="file" id="fileToUpload2" class='file-to-upload-input' onchange='previewImage2()'>
+                                                <br><br>
+
+                                                <!--adding JS to preview the image-->
+                                                <script>
+                                                        function previewImage2() {
+                                                        const fileInput2 = document.getElementById('fileToUpload2');
+                                                        const imagePreview2 = document.getElementById('imagePreview2');
+                                                        const listProductForm = document.querySelector('.listProductForm2');
+
+                                                        const file = fileInput2.files[0];
+                                                        if (file) {
+                                                            const reader = new FileReader();
+                                                            reader.onload = function(e) {
+                                                                imagePreview2.src = e.target.result;
+                                                            }
+                                                                reader.readAsDataURL(file);
+                                                            } else {
+                                                                imagePreview2.src = ''; //ensuring no image is shown if none is selected, but this shouldn't happen since I put required in the input box 
+                                                            }
+                                                            imagePreview2.style='z-index:10;'
+                                                            imagePreview2.style='max-height:27.5vh;'
+                                                            listProductForm.style='margin-top:5vh;'
+                                                            console.log('test');
+                                                        }
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <img id='imagePreview2' src=''>
+                            </div>
+                        </div>
+                        <!--Using enctype multipart since I am importing files into the database -->
+                        
+                    </div>
+                    <div class="col-md-4">
+                        <div id='form-general-description' style='height:70%; width:100%;'>
+                            <div class="custom-column" style='height:72vh; width:100%;'>
+                                <textarea name="description" type='text' class='descriptionTextArea' placeholder='Enter Description here...' required></textarea>
+                            </div>
+                            <div class="custom-column" style='height:5%; width:100%; padding-top:1vh;'>
+                                <p style='font-size:28px;'>Price (£):
+                                <input type="text" class='inputForPrice' name='price' placeholder='00.00' style='border-radius:50px; width:50%;'required>
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="status">
+                            <?php
+                                if (isset($_SESSION['Message5'])) {
+                                    echo $_SESSION['Message5'];
+                                    unset($_SESSION['Message5']);
+                                }
+                                if (isset($_SESSION['Message3'])) {
+                                    echo $_SESSION['Message3'];
+                                    unset($_SESSION['Message3']);
+                                }
+                                if (isset($_SESSION['Message7'])) {
+                                    echo $_SESSION['Message7'];
+                                    unset($_SESSION['Message7']);
+                                }
+                                if (isset($_SESSION['Message8'])) {
+                                    echo $_SESSION['Message8'];
+                                    unset($_SESSION['Message8']);
+                                }
+                                if (isset($_SESSION['Message1'])) {
+                                    echo $_SESSION['Message1'];
+                                    unset($_SESSION['Message1']);
+                                }
+                            ?>        
+                        </div>
+                        <div class="listProductForm" style=''>
+                            <div id='form-general-productType' style='height:5%; width:100%; align-items:centre;'>
+
+                                    <select name="productType" id="productType" class='dropdown-toggle' data-toggle='dropdown'>
+                                        <option selected disabled>Select Type</option>
+                                        <?php
+                                        include_once('connection.php');
+                                        $stmt = $conn->prepare('SELECT * FROM Types');
+                                        $stmt->execute();
+                                        while($row=$stmt->fetch(PDO::FETCH_ASSOC)){
+
+                                        echo('<option class="select-type-option" value="' . $row["productType"] . '">' . $row["productType"] . '</option>');
+                                        }
+                                        ?>
+
+                                    </select>
+
+                            </div>
+                        </div>
+
+
+                        <div id='form-general-quant' style='height:10%; margin-left:30px; width:95%; margin-top:45vh;'>
+                            <input type='number'  class='listProduct' name='quantity' placeholder='Enter Quantity Here...' style='border-radius:50px; border:3px solid #03045e; height:100%; font-size:30px; width:95%; margin-left:0; margin-right:0;'required>
+                        </div>
+                        <button type = 'submit' class = 'btn-seventh' style='margin-top:10vh; margin-left:30vh; font-size:40px;'>List Item</button>
+                    </div>
                 </div>
-            </form>
             </div>
-        </div>
+        </form>    
     </main>
 
 
-    <div class="navbar-bottom">
+
     </div>
 </body>
 </html>
