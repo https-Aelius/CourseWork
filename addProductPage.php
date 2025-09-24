@@ -60,6 +60,9 @@
             <div class="container-fluid" style='width:100%;'>
                 <div class="row" style='width:100%; height:100%;'>
                     <div class="col-md-4">
+                        <div class="backToHome">
+                            <a href='adminPage.php' class='btn btn-primary' style='font-size:18px; margin-left:30px; margin-top:-60px; margin-bottom:20px; padding:10px 20px; border-radius:15px; background-color:#03045e; border:none;'><- Back</a>
+                        </div>
                         <div class="accountTop" style='height:10%; width:90%; margin-left:30px;' >
                             <h2 style='margin-top:5vh; margin-bottom:5vh; margin-left:10px; color:white;'>Add New Product</h2>
                         </div>

@@ -78,7 +78,7 @@
                     <!--ALL ORDERS SECTION-->
 
 
-                    <div class="col-md-4">
+                    <div class="col-md-4" style='margin-top:14.6vh;'>
                         <div class="customColumn">
                             <h3>All Orders</h3>
                             <p>[the details......]</p>
@@ -90,7 +90,7 @@
 
                     <!--DATABASES/STOCK SECTION-->
                 
-                    <div class="col-md-4">
+                    <div class="col-md-4" style='margin-top:14.6vh;'>
                     <!--记得要写php code -->
                         <div class="customColumn">
                             <h3>Products & Stock</h3>

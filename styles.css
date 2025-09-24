@@ -536,3 +536,9 @@ label{
     margin-bottom:50px;
     padding-bottom:20px;
 }
+.searchBox{
+    font-size:20px;
+    padding:10px 10px;
+    border:1.5px solid #03045e;
+    border-radius:10px;
+}
