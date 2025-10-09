@@ -543,3 +543,133 @@ label{
     border-radius:10px;
 
 }
+.mainImage{
+    padding:60px 0;
+}
+.mainImage img{
+    width:100%;
+    max-width: 420px;
+    border-radius:10px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+.thumbnailList {
+    margin-top: 15px;
+    text-align: center;
+  }
+  
+  .thumbnailList img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin: 0 6px;
+    cursor: pointer;
+    transition: border-color 0.2s ease-in-out;
+  }
+  
+  .thumbnailList img:hover {
+    border-color: #000;
+  }
+  .productTitle {
+    font-size: 28px;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 1.3;
+  }
+  
+  .rating {
+    color: #777;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+  
+  .rating .stars {
+    color: #f5b301;
+    font-size: 16px;
+    margin-right: 5px;
+  }
+  
+  .priceSection {
+    margin-bottom: 15px;
+  }
+  
+  .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+  
+  .description {
+    font-size: 15px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 25px;
+  }
+
+  .quantity {
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+  }
+  
+  .quantBtn {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 1;
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    cursor: pointer;
+    text-align: center;
+  }
+  
+  .quantBtn:hover {
+    background-color: #eaeaea;
+  }
+  
+  .quantInput {
+    width: 60px;
+    height: 40px;
+    text-align: center;
+    font-size: 16px;
+    margin: 0 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+  }
+  .availability {
+    color: #777;
+    font-size: 14px;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  
+  .breadcrumb {
+    background: none;
+    padding: 8px 0;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #2c2c2c;
+    
+  }
+  
+  .breadcrumb a {
+    color: #2c2c2c;
+
+  }
+  
+  .breadcrumb a:hover {
+    color:#03045E;
+  }
+
+  .product-link{
+    color:white;
+  }
+.stockStatus{
+    margin-top:1vh;
+}

@@ -29,7 +29,9 @@
 <body>
     <nav class = "navbar navbar-default navbar-fixed-top">  
         <div class = "navbar-brand" style = "font-size:20px;">
-            BOTTLELEAK
+            <a href='mainPage.php'>
+                BOTTLELEAK
+            </a>
         </div>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
@@ -51,7 +53,24 @@
                     </form>
                 </li>
                 <li><a href = ""><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
-                <li><a href = ""><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> <!-- User picture -->
+                <!-- account pages depending on the role --> 
+                <?php
+                if(isset($_SESSION)){
+                    if ($_SESSION['role']==2){
+                        echo '<li><a href = "adminPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+                        
+                    }
+                    else{
+                        echo '<li><a href = "accountPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+
+                    }
+                }
+                
+                else{
+                    echo '<li><a href = "login.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> ';
+
+                }
+                ?>
             </ul>
         </div>
     </nav>
@@ -71,6 +90,7 @@
                             <h3>Total Profits & Revenue</h3>
                             <p>[the details......]</p>
                         </div>
+                        <a type ='button' href='logout_logic.php' id = 'addToCartButton' class='btn btn-sixth' style='margin-top:4vh; margin-left:3vh;'>Log Out</a>
                     </div>
                 
             

@@ -50,9 +50,9 @@ $stmt=$conn->prepare("
         DROP TABLE IF EXISTS Basket;
         CREATE TABLE Basket (
             basketID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            orderDate DATETIME NOT NULL,
             itemID INT(6) NOT NULL,
-            quantBasket INT(6) NOT NULL
+            quantBasket INT(6) NOT NULL,
+            userID INT(6) NOT NULL
         )
 ");
 $stmt->execute();
@@ -64,7 +64,8 @@ $stmt=$conn->prepare("
         CREATE TABLE Orders (
             deliveryID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             userID INT(6) NOT NULL,
-            basketID INT(6) NOT NULL
+            basketID INT(6) NOT NULL,
+            orderDate DATETIME NOT NULL
         )
 ");
 $stmt->execute();

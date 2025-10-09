@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -40,7 +43,24 @@
                     </form>
                 </li>
                 <li><a href = ""><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
-                <li><a href = ""><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> <!-- User picture -->
+                <!-- account pages depending on the role --> 
+                <?php
+                if(isset($_SESSION)){
+                    if ($_SESSION['role']==2){
+                        echo '<li><a href = "adminPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+                        
+                    }
+                    else{
+                        echo '<li><a href = "accountPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+
+                    }
+                }
+                
+                else{
+                    echo '<li><a href = "login.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> ';
+
+                }
+                ?>
             </ul>
         </div>
     </nav>
@@ -48,7 +68,7 @@
     <!--Body of the website-->
     <main>
         <div class="TopPage" style='padding-top:20px;'>
-            <section class="carousel next">
+            <section class="carousel next" style='border-bottom:1px solid #03045e;'>
                 <div class="list">
                     <article class="item other_1"> <!--Laker Bottle-->
                         <?php
@@ -90,7 +110,7 @@
 
                             ?>
                         <div class="main-content"
-                        style="background-color: #eeee;"> 
+                        style="background-color: #f1faff;"> 
                             <div class="content">
                                 <h2>A Revolutionary Bottle</h2>
                                 <p class = 'price'>$ <?php echo $price; ?></p>
@@ -143,7 +163,7 @@
             </section>
         </div>
         <div class="mainPage" style='margin-bottom:200px;'>
-            <div class="product" style="padding:0;">
+            <div class="product" style="padding:0; margin-top:5vh; border:none;">
                 <h2 class="product-category">In Collaboration with Crayon Shin Chan</h2>
             </div>
             <div class="product" style='height:100%;'>
@@ -165,15 +185,20 @@
                                 $name=$row['name'];
                                 $price=$row['price'];
                                 $productImage=$row['productImage'];
-                                $productName=$row['name'];
+                                $description=$row['description'];
+                                $dimensionImage=$row['dimensionImage'];
+                                $quant=$row['quant'];
+                                $productType=$row['productType'];
+                                $itemSold=$row['itemSold'];
                                 $discountRate=$row['discountRate'];
                                 if($discountRate>0){
                                     $actualPrice= $price - ($price * ($discountRate/100));
                                 } else {
                                     $actualPrice = $price;
                                 }
+                                $actualPrice = number_format($actualPrice, 2);
                                 echo("
-                                
+                                <a href='genericProductPage.php?itemID=$itemID' class='product-link' style='text-decoration:none; color:black;'>
                                 <div class='product-card'>
                                     <div class='product-image'>
                                 ");
@@ -214,78 +239,6 @@
                     ?>  
                 
                     
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">50% off</span>
-                            <img src="" class="product-thumb" alt="">
-                            <button class="card-btn">add to wishlist</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">brand</h2>
-                            <p class="product-short-description">description.......</p>
-                            <span class="price">$20</span><span class="actual-price">$40</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">50% off</span>
-                            <img src="" class="product-thumb" alt="">
-                            <button class="card-btn">add to wishlist</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">brand</h2>
-                            <p class="product-short-description">description.......</p>
-                            <span class="price">$20</span><span class="actual-price">$40</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">50% off</span>
-                            <img src="" class="product-thumb" alt="">
-                            <button class="card-btn">add to wishlist</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">brand</h2>
-                            <p class="product-short-description">description.......</p>
-                            <span class="price">$20</span><span class="actual-price">$40</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">50% off</span>
-                            <img src="" class="product-thumb" alt="">
-                            <button class="card-btn">add to wishlist</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">askdaksldladkasdkl</h2>
-                            <p class="product-short-description">description.......</p>
-                            <span class="price">$20</span><span class="actual-price">$40</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">50% off</span>
-                            <img src="" class="product-thumb" alt="">
-                            <button class="card-btn">add to wishlist</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">Scrolled</h2>
-                            <p class="product-short-description">description.......</p>
-                            <span class="price">$20</span><span class="actual-price">$40</span>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <div class="product-image">
-                            <span class="discount-tag">50% off</span>
-                            <img src="" class="product-thumb" alt="">
-                            <button class="card-btn">add to wishlist</button>
-                        </div>
-                        <div class="product-info">
-                            <h2 class="product-brand">brand</h2>
-                            <p class="product-short-description">description.......</p>
-                            <span class="price">$20</span><span class="actual-price">$40</span>
-                        </div>
-                    </div>
                     
                 </div>
 
