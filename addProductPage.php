@@ -157,7 +157,7 @@
                                 <textarea name="description" type='text' class='descriptionTextArea' placeholder='Enter Description here...' required></textarea>
                             </div>
                             <div class="custom-column" style='height:5%; width:100%; padding-top:1vh;'>
-                                <p style='font-size:28px;'>Price (£):
+                                <p style='font-size:28px;'>Price ($):
                                 <input type="text" class='inputForPrice' name='price' placeholder='00.00' style='border-radius:50px; width:50%;'required>
                                 </p>
                             </div>
@@ -208,9 +208,12 @@
 
                             </div>
                         </div>
+                        <div class="form-general-discountRate" style='height:10%; margin-left:30px; width:95%; margin-top:18vh;'>
+                            <p style='font-size:18px;'>Discount Rate (%): - If None, Enter 0</p>
+                            <input type='number' class='listProduct' name='discountRate' placeholder='0' style='border-radius:50px; border:3px solid #03045e; height:100%; font-size:30px; width:95%; margin-left:0; margin-right:0;'required>
+                        </div>
 
-
-                        <div id='form-general-quant' style='height:10%; margin-left:30px; width:95%; margin-top:45vh;'>
+                        <div id='form-general-quant' style='height:10%; margin-left:30px; width:95%; margin-top:21vh;'>
                             <input type='number'  class='listProduct' name='quantity' placeholder='Enter Quantity Here...' style='border-radius:50px; border:3px solid #03045e; height:100%; font-size:30px; width:95%; margin-left:0; margin-right:0;'required>
                         </div>
                         <button type = 'submit' class = 'btn-seventh' style='margin-top:10vh; margin-left:30vh; font-size:40px;'>List Item</button>

@@ -7,14 +7,15 @@ session_start();
 print_r($_POST);
 
 $stmt=$conn->prepare('INSERT INTO
-    Products (itemID, name, description, productImage, dimensionImage, soldOut, price, quant, productType, itemSold)
-    VALUES (null,:name,:description,null,null,0,:price,:quant,:productType,0)');
+    Products (itemID, name, description, productImage, dimensionImage, soldOut, price, quant, productType, itemSold, discountRate)
+    VALUES (null,:name,:description,null,null,0,:price,:quant,:productType,0,:discountRate)');
     echo'preparing statement';
     $stmt->bindParam(':name', $_POST['title']);
     $stmt->bindParam(':description', $_POST['description']);
     $stmt->bindParam(':price', $_POST['price']);
     $stmt->bindParam(':quant', $_POST['quantity']);
     $stmt->bindParam(':productType', $_POST['productType']);
+    $stmt->bindParam(':discountRate', $_POST['discountRate']);
     try{
         $stmt->execute();
         echo'<br>finished insertion';

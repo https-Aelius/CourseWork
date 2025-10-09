@@ -1,0 +1,512 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    font-family:'Poppins';
+    margin:0;
+    padding:0;
+    font-size: 16px;
+    background-color: #eeee;
+
+}
+
+*{
+    box-sizing:border-box;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration:none;
+}
+:root{
+    --border-color: #fff5;
+    --w-image: 500px;
+    --calculate:calc(3/2);
+}
+header{
+    display:grid;
+    grid-template-columns: 80px 1fr calc(var(--w-image)*var(--calculate));
+    grid-template-rows: 80px;
+    position:relative;
+    z-index: 10;
+    border-bottom: 1px solid var(--border-color);
+}
+header .logo img{
+    width:80%;
+}
+header .logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+header nav a{
+    color: black;
+    font-weight:400;
+    font-size:1.2em;
+    padding:10px 20px;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+header nav a:hover{
+    color: #4f9ef8ee;
+}
+
+
+header nav ul{
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    gap: 20px;
+    padding-right: 30px;
+}
+header nav{
+    border-left: 1px solid var(--border-color);
+}
+.carousel{
+    margin-top: -80px;
+    width: 100%;
+    height: 100vh;
+    overflow:hidden;
+}
+.carousel .list{
+    height: 100%;
+    position: relative;
+
+}
+.carousel .list::before{
+    position: absolute;
+    width: var(--w-image);
+    height: 100%;
+    content: '';
+    background-color: #0000;
+    top:0;
+    left:calc(100% - calc(var(--w-image)* var(--calculate)));
+    /* moving it to the right to fit 1.5 times the width of the image */
+    border-left:1px solid var(--border-color);
+    border-left:1px solid var(--border-color);
+    z-index:10;
+    /* z-index 10 is used to overlap the entire website content to avoid users from being able to manipulate the slider or having difficulty manipulating other elements of the website */
+    pointer-events:none;
+}
+.carousel .list::after{
+    position: absolute;
+    top:50px;
+    left:50px;
+    content:'';
+    background-color:#0099ffee;
+    width:400px;
+    height:300px;
+    z-index:10;
+    pointer-events: none;
+    border-radius: 20px 50px 110px 230px;
+    filter:blur(150px);
+    opacity:.6;
+}
+.carousel .list .item{
+    position:absolute;
+    /* using position absolute to overlap images */
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}
+.carousel .list .item .image{
+    width: var(--w-image);
+    height: 100%;
+    position: absolute;
+    top: 3.5%;
+    left: calc(100% - calc(var(--w-image)* var(--calculate)));
+    /* 100% - 3/2 of the image size */
+    padding:20px;
+    display:flex;
+    /* using display flex to move the element inside */
+    flex-direction: column;
+    /* to arrange images and captions vertically */
+    justify-content: end;
+    align-items: center;
+    font-weight:500;
+}
+.carousel .list .item .image img{
+    width:90%;
+    margin-bottom:20px;
+    filter:drop-shadow(0 150px 50px #5625836b);
+}
+.carousel .list .item .image figcaption{
+    font-family:'Roboto Mono';
+    font-weight:bold;
+    font-size: 1.3em;
+    text-align:center;
+    margin-bottom: 30px;
+    width: 70%;
+}
+.carousel .list .item .main-content{
+    height: 100%;
+    display:grid;
+    /* the display is grid to divide the columns */
+    grid-template-columns:calc(100% - calc(var(--w-image)* var(--calculate)));
+    /* the grids will have a size of 100% minus 3/2s of the image size */
+}
+.carousel .list .item .main-content .content{
+    padding: 150px 20px 20px 80px;
+    /* padding here is used here to ensure image doesn't overlap with the header */
+}
+.carousel .list .item .main-content .content h2{
+    font-size: 5em;
+    font-family:'Roboto Mono';
+    margin-left:-20px;
+}
+.carousel .list .item .main-content .content .price{
+    font-family:'Roboto Mono';
+    font-size:3em;
+    margin:20px 0;
+}
+.carousel .list .item .main-content .content .addToCart{
+    background-color: #000000ee;
+    color: #ffffff;
+    padding:10px 30px;
+    font-family:'Poppins';
+    font-size:Large;
+    font-weight: 500;
+    border-radius: 30px;
+    border:none;
+    margin-top:20px;
+    transition: color 0.3s ease;
+}
+
+.carousel .list .item .main-content .content .addToCart:hover{
+    cursor:pointer;
+    background-color: #2c2b2b;
+}
+
+.arrows{
+    position: absolute;
+    /* using position absolute to move it to a position that overlaps the item */
+    bottom: 20px;
+    width:calc(100% - calc(var(--w-image)* var(--calculate)));
+    display:grid;
+    grid-template-columns: repeat(2, 50px);
+    grid-template-rows: 50px;
+    justify-content: end;
+    /* used to bring the buttons to the right  */
+    gap:10px;
+
+}
+.arrows button{
+    background-color: transparent;
+    border:1px solid var(--border-color);
+    color:#000000;
+    font-family: 'monospace';
+    font-size:large;
+    font-weight: bold;
+    line-height: 0;
+    box-shadow: 0 10px 40px #5555;
+    cursor:pointer;
+    transition:0.5s;
+}
+.arrows button:hover{
+    background-color: #eee5;
+}
+.carousel .list .item{
+    display:none;
+}
+.carousel .list .item.active,
+.carousel .list .item.other_1,
+.carousel .list .item.other_2{
+    display:block;
+}
+.carousel .list .item.active{
+    z-index:2;
+    /* z-index here is 2 so it always overlaps other items */
+}
+.carousel .list .item.other_1,
+.carousel .list .item.other_2{
+    pointer-events:none;
+    /* so users don't interact with the other items when main item is active */
+}
+.carousel .list .item.active .main-content{
+    animation: showContent 1s ease-in-out 1 forwards;
+}
+/* animation uses a special property called clipPath to animate the content */
+@keyframes showContent{
+    from{
+        clip-path: circle(0% at 70% 50%);
+        /* 70% width and 50% height */
+    }to{
+        clip-path: circle(100% at 70% 50%);
+    }
+}
+.next .item.other_1{
+    z-index:1;
+}
+.next .item .image img,
+.next .item .image figcaption{
+    animation: effectNext .5s ease-in-out 1 forwards;
+}
+@keyframes effectNext{
+    from{
+        transform: translateX(calc(var(--transform-from)));
+    }to{
+        transform: translateX(calc(var(--transform-from) - var(--w-image)));
+    }
+}
+.next .item.active .image{
+    --transform-from: var(--w-image);
+}
+.next .item.other_1 .image{
+    z-index:3;
+    --transform-from:0px;
+    overflow: hidden;
+    /* when animation moves we want product image to be hidden so we use overflow hidden */
+}
+.next .item.other_2 .image{
+    z-index:3;
+    --transform-from: calc(var(--w-image)*2);
+}
+.arrows{
+    z-index: 10;
+}
+/* prev */
+.prev .list .item .image img,
+.prev .list .item .image figcaption{
+    animation: effectPrev 0.5s ease-in-out 1 forwards;
+}
+@keyframes effectPrev{
+    from{
+        transform: translateX(calc(var(--transform-from)));
+    }to{
+        transform: translateX(calc(var(--transform-from) + var(--w-image)));
+    }
+}
+.prev .list .item.active .image{
+    --transform-from: calc(var(--w-image) * -1);
+    overflow: hidden;
+}
+.prev .list .item.other_1 .image{
+    --transform-from: 0px;
+    z-index: 3;
+}
+.prev .list .item.other_2 .image{
+    z-index: 3;
+    --transform-from: var(--w-image);
+}
+.prev .list .item.other_2 .main-content{
+    opacity: 0;
+}
+@media screen and (max-width: 1023px){
+    :root{
+        --calculate: 1;
+        --w-image: 400px; 
+    }
+    .carousel .list .item .main-content .content h2{
+        font-size: 3em;
+    }
+}
+@media screen and (max-width: 767px){
+    .carousel .list .item .image{
+        width: 100%;
+        left: 0;
+        justify-content: center;
+    }
+    .carousel .list .item .image figcaption{
+        color: #fff;
+        width: 100%;
+        text-align: center;
+    }
+    .carousel .list .item .main-content .content{
+        display: none;
+    }
+    .arrows{
+        left: 50%;
+        justify-content: center;
+    }
+}
+
+
+/*Code for carousel*/
+.product {
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+  }
+  
+  .product-category {
+    padding: 0 10vw;
+    font-size: 30px;
+    font-weight: 500;
+    margin-bottom: 40px;
+    text-transform: capitalize;
+  }
+  
+  .product-container {
+    padding: 0 10vw;
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+  .product-container::-webkit-scrollbar {
+    display: none;
+    /* to hide the scrollbar */
+  }
+  
+  .product-card {
+    flex: 0 0 auto;
+    width: 250px;
+    height: 450px;
+    margin-right: 40px;
+  }
+  
+  .product-image {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+  }
+  
+  .product-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .discount-tag {
+    position: absolute;
+    background: #ffffff5e;
+    padding: 5px;
+    border-radius: 5px;
+    color: #ff7d7d;
+    right: 10px;
+    top: 10px;
+    text-transform: capitalize;
+  }
+  
+  .card-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    width: 90%;
+    text-transform: capitalize;
+    border: none;
+    outline: none;
+    background: #fff;
+    border-radius: 5px;
+    transition: 0.5s;
+    cursor: pointer;
+    opacity: 0;
+  }
+  
+  .product-card:hover .card-btn {
+    opacity: 1;
+  }
+  
+  .card-btn:hover {
+    background: #ff7d7d;
+    color: #fff;
+  }
+  
+  .product-info {
+    width: 100%;
+    height: 100px;
+    padding-top: 10px;
+  }
+  
+  .product-brand {
+    text-transform: uppercase;
+  }
+  
+  .product-short-description {
+    width: 100%;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    opacity: 0.5;
+    text-transform: capitalize;
+    margin: 5px 0;
+  }
+  
+  .price {
+    font-weight: 900;
+    font-size: 20px;
+  }
+  
+  .actual-price {
+    margin-left: 20px;
+    opacity: 0.5;
+    text-decoration: line-through;
+  }
+  
+  .pre-btn,
+  .nxt-btn {
+    border: none;
+    width: 10vw;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*makes the cool background*/
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+    font-size:50px;
+    cursor: pointer;
+    z-index: 8;
+  }
+  
+  .pre-btn {
+    left: 0;
+  }
+  
+  .nxt-btn {
+    right: 0;
+  }
+  
+  .pre-btn,
+  .nxt-btn {
+    opacity: 0.2;
+  }
+  
+  .pre-btn:hover,
+  .nxt-btn:hover {
+    opacity: 1;
+  }
+  
+  .collection-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 10px;
+  }
+  
+  .collection {
+    position: relative;
+  }
+  
+  .collection img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .collection p {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    font-size: 50px;
+    text-transform: capitalize;
+  }
+  
+  .collection:nth-child(3) {
+    grid-column: span 2;
+    margin-bottom: 10px;
+  }
+
+
+
+
+
+

@@ -22,7 +22,7 @@ if ($_FILES['fileToUpload1']['error'] && ['fileToUpload2']['error']=== UPLOAD_ER
 
 $stmt=$conn->prepare('UPDATE Products
     SET name=:name, description=:description, price=:price, 
-    quant=:quant, productType=:productType, itemSold=:itemSold
+    quant=:quant, productType=:productType, itemSold=:itemSold, discountRate=:discountRate
     WHERE itemID=:itemID');
     echo'preparing statement';
     $stmt->bindParam(':name', $_POST['title']);
@@ -31,6 +31,7 @@ $stmt=$conn->prepare('UPDATE Products
     $stmt->bindParam(':quant', $_POST['quantity']);
     $stmt->bindParam(':productType', $_POST['productType']);
     $stmt->bindParam(':itemSold', $_POST['itemSold']);
+    $stmt->bindParam(':discountRate', $_POST['discountRate']);
     $stmt->bindParam(':itemID', $itemID);
     try{
         $stmt->execute();

@@ -87,7 +87,7 @@
                     </div>
                     <div class="container" style='margin-top:8vh; margin-left:1vh; display:flex;'>
                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" style='flex-direction:row'>
-                                <input name ='search' type="text" id='searchBox' class="searchBox" placeholder="Search product by name or ID..." style='width:70%; height:60%; margin-left:10vh;'>
+                                <input name ='search' type="text" id='searchBox' class="searchBox" placeholder="Search product by name or description..." style='width:70%; height:60%; margin-left:10vh;'>
                                 <button type='submit' class='btn btn-primary' style='font-size:18px; padding:10px 20px; border-radius:15px; background-color:#03045e; border:none;'>Search</button>
                                 <div id="searchResults" class="mt-3"></div>
                             </form>
@@ -128,7 +128,7 @@
 
             if(isset($_POST['search'])){
                 $search="%" . $_POST['search'] . "%";
-                echo($search);
+
 
                 $stmt=$conn->prepare("SELECT * FROM Products WHERE name LIKE :search OR description LIKE :search");
                 $stmt->bindParam(':search', $search, PDO::PARAM_STR);
@@ -368,6 +368,7 @@
             $itemSold=$product['itemSold'];
             $productImage=$product['productImage'];
             $dimensionImage=$product['dimensionImage'];
+            $discountRate=$product['discountRate'];
 
         }
         ?>
@@ -500,9 +501,14 @@
                                                 <textarea name="description" type='text' class='descriptionTextArea' placeholder='Enter Description here...' required><?php echo $description;?></textarea>
                                             </div>
                                             <div class="custom-column" style='height:5%; width:100%; padding-top:1vh;'>
-                                                <p style='font-size:28px;'>Price (£):
+                                                <p style='font-size:28px;'>Price ($):
                                                 <input value = '<?php echo $price;?>' type="text" class='inputForPrice' name='price' placeholder='00.00' style='border-radius:50px; width:50%;'required>
                                                 </p>
+                                            </div>
+
+                                            <div class="form-general-discountRate" style='height:10%; margin-left:30px; width:95%; margin-top:18vh;'>
+                                                <p style='font-size:18px;'>Discount Rate (%): - If None, Enter 0</p>
+                                                <input value = '<?php echo $discountRate;?>'type='number' class='listProduct' name='discountRate' placeholder='0' style='border-radius:50px; border:3px solid #03045e; height:100%; font-size:30px; width:95%; margin-left:0; margin-right:0;'required>
                                             </div>
                                             
                                         </div>

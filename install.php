@@ -38,7 +38,8 @@ $stmt=$conn->prepare("
             price FLOAT(4,2) NOT NULL,
             quant VARCHAR(50) NOT NULL,
             productType VARCHAR(50) NOT NULL,
-            itemSold VARCHAR(50) NOT NULL            
+            itemSold VARCHAR(50) NOT NULL,
+            discountRate INT(2) NOT NULL            
         )
 ");
 $stmt->execute();
