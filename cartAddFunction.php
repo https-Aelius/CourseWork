@@ -67,6 +67,6 @@ catch (PDOException $e) {
     $conn->rollBack(); //going back if there is an error during transaction
     die('Error: ' . $e->getMessage());
 }
-
+header('Location: mainPage.php');
 
 ?>

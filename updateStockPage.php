@@ -53,7 +53,7 @@
                         
                     </form>
                 </li>
-                <li><a href = ""><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
+                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
                 <li><a href = ""><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> <!-- User picture -->
             </ul>
         </div>
@@ -585,7 +585,6 @@
     </main>
 
 
-
-
+    <?php include_once('basketModal.php'); ?>
 </body>
 </html>

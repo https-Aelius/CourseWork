@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en">
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login Page</title>
@@ -36,7 +37,7 @@
                         
                     </form>
                 </li>
-                <li><a href = ""><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
+                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
                 <!-- account pages depending on the role --> 
                 <?php
                 if(isset($_SESSION)){
@@ -121,5 +122,9 @@
     <!--Bottom of navbar-->
     <div class="navbar-bottom">
     </div>
+
+        
+
+    <?php include_once('basketModal.php'); ?>    
 </body>
 </html>
