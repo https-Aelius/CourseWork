@@ -97,6 +97,10 @@ const paypalButtons = window.paypal.Buttons({
              );
          }
      },
+     onCancel: (data) => {
+        // Show a cancel page or return to cart
+        window.location.assign("/errorPage.php");
+    },
  
     
  });

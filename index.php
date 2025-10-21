@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . "/../vendor/autoload.php";
 
-
+//connecting PayPals various APIs and SDK servers.
 use PaypalServerSdkLib\PaypalServerSdkClientBuilder;
 use PaypalServerSdkLib\Authentication\ClientCredentialsAuthCredentialsBuilder;
 use PaypalServerSdkLib\Logging\LoggingConfigurationBuilder;
@@ -81,11 +81,11 @@ function createOrder($cart)
     $orderBody = [
         "body" => OrderRequestBuilder::init("CAPTURE", [
             PurchaseUnitRequestBuilder::init(
-                AmountWithBreakdownBuilder::init("USD", "100")
+                AmountWithBreakdownBuilder::init("USD", $_SESSION['toPay'])
                     ->breakdown(
                         AmountBreakdownBuilder::init()
                             ->itemTotal(
-                                MoneyBuilder::init("USD", "100")->build()
+                                MoneyBuilder::init("USD", $_SESSION['toPay'])->build()
                             )
                             ->build()
                     )
@@ -94,11 +94,11 @@ function createOrder($cart)
                 // lookup item details in `cart` from database
                 ->items([
                     ItemBuilder::init(
-                        "T-Shirt",
-                        MoneyBuilder::init("USD", "100")->build(),
+                        "HydraPeak Products",
+                        MoneyBuilder::init("USD", $_SESSION['toPay'])->build(),
                         "1"
                     )
-                        ->description("Super Fresh Shirt")
+                        ->description("Products from HydraPeak")
                         ->sku("sku01")
                         ->build(),
                 ])

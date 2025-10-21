@@ -14,11 +14,7 @@ $stmt = $conn->prepare("
             role TINYINT(1) DEFAULT 1,
             telephone VARCHAR(11) NOT NULL,
             postcode VARCHAR(7) NOT NULL,
-            addressLine VARCHAR(20) NOT NULL,
-            cardNo VARCHAR(16) NOT NULL,
-            cardName VARCHAR(60) NOT NULL,
-            cardExpiry CHAR(5) NOT NULL,
-            cardCVC CHAR(4) NOT NULL
+            addressLine VARCHAR(20) NOT NULL
     )    
 ");
 $stmt->execute();
@@ -64,8 +60,9 @@ $stmt=$conn->prepare("
         CREATE TABLE Orders (
             deliveryID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             userID INT(6) NOT NULL,
-            basketID INT(6) NOT NULL,
-            orderDate DATETIME NOT NULL
+            itemID INT(6) NOT NULL,
+            orderDate DATETIME NOT NULL,
+            toPay FLOAT(4,2) NOT NULL
         )
 ");
 $stmt->execute();

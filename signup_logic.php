@@ -57,32 +57,13 @@ if (!preg_match("#[0-9]+#", $_POST["password"]) || !preg_match("#[A-Z]+#", $_POS
     exit();
 }
 
-//ensures card number is 16 digits
-if (strlen($_POST['cardNo']) != 16){
-    $_SESSION['Message3'] = "<p style = 'color:red;'>Card number must be 16 digits long.</p>";
-    header('Location: signup.php');
-    exit();
-}
 
-//ensures expiry digit is in proper format
-if (!preg_match("/^(0[1-9]|1[0-2])\/?([0-9]{2})$/", $_POST['cardExpiry'])){
-    $_SESSION['Message3'] = "<p style = 'color:red;'>Card expiry must be in MM/YY format.</p>";
-    header('Location: signup.php');
-    exit();
-}
-
-//ensuring CVC is only 3 digits
-if (strlen($_POST['cardCVC']) != 3){
-    $_SESSION['Message3'] = "<p style = 'color:red;'>Card CVC must be 3 digits long.</p>";
-    header('Location: signup.php');
-    exit();
-}
 
 try{
     $conn-> beginTransaction();
 
-    $sql = 'INSERT INTO Users (userID,  username, forename, surname, email, password, role, telephone, postcode, addressLine, cardNo, cardName, cardExpiry, cardCVC) 
-    VALUES (null, :username, :forename, :surname, :email, :password, 1, :telephone, :postcode, :addressLine, :cardNo, :cardName, :cardExpiry, :cardCVC)';
+    $sql = 'INSERT INTO Users (userID,  username, forename, surname, email, password, role, telephone, postcode, addressLine) 
+    VALUES (null, :username, :forename, :surname, :email, :password, 1, :telephone, :postcode, :addressLine)';
     $stmt = $conn->prepare($sql);
 
     $hashPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
@@ -94,10 +75,7 @@ try{
     $stmt->bindParam(':telephone', $_POST['telephone']);
     $stmt->bindParam(':postcode', $_POST['postcode']);
     $stmt->bindParam(':addressLine', $_POST['addressLine']);
-    $stmt->bindParam(':cardNo', $_POST['cardNo']);
-    $stmt->bindParam(':cardName', $_POST['cardName']);
-    $stmt->bindParam(':cardExpiry', $_POST['cardExpiry']);
-    $stmt->bindParam(':cardCVC', $_POST['cardCVC']);
+    
     $stmt->execute();
 
     echo"end of sql";

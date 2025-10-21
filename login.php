@@ -7,17 +7,21 @@
     <title>Login Page</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
     <nav class = "navbar navbar-default navbar-fixed-top">  
-        <div class = "navbar-brand" style = "font-size:20px;">
-            BOTTLELEAK
-        </div>
+    <a href="mainPage.php">
+            <div class = "navbar-brand" style = "font-size:20px;">
+                BOTTLELEAK
+            </div>
+        </a>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
                 <li><a href = "">WATER BOTTLES</a></li>

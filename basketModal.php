@@ -41,7 +41,7 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         echo "<h2>Please log in to view your basket.</h2>";
         exit;
     }
-
+    
     try{
         //fetching the basket details based on the userID
         $stmt = $conn->prepare("SELECT * FROM Basket WHERE userID=:userID");
@@ -55,6 +55,8 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             $itemID = $basketRow['itemID'];
             $productQuantity = $basketRow['quantBasket'];
             $basketID = $basketRow['basketID'];
+
+            $count+=1;
 
 
             //now fetching the product details based on the itemID from the basket
@@ -115,7 +117,17 @@ while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
             </div>
             
             <div class="modal-footer">
-            <a type='button' href='checkOutPage.php?userID=<?php echo $_SESSION['userID'];?>' class='btn btn-sixth'>Checkout</a>
+            <?php
+            if ($count > 0){
+                $idPass = $_SESSION['userID'];
+                echo"
+            <a type='button' href='checkOutPage.php?userID=$idPass' class='btn btn-sixth'>Checkout</a>
+            ";
+            }
+            else{
+                echo"<h4>Your basket is empty.</h4>";
+            }
+            ?>
             </div>
         </div>
     </div>

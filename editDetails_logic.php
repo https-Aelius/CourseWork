@@ -51,27 +51,6 @@ if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)){
 
 //rest of validation:
 
-//ensures card number is 16 digits
-if (strlen($_POST['cardNo']) != 16){
-    $_SESSION['Message3'] = "<p style = 'color:red;'>Card number must be 16 digits long.</p>";
-    header('Location: ../accountPage.php?modal=editDetails');
-    echo'<br> validation for number of digits in card has been activated';
-    exit();
-}
-
-//ensures expiry digit is in proper format
-if (!preg_match("/^(0[1-9]|1[0-2])\/?([0-9]{2})$/", $_POST['cardExpiry'])){
-    $_SESSION['Message3'] = "<p style = 'color:red;'>Card expiry must be in MM/YY format.</p>";
-    header('Location: ../accountPage.php?modal=editDetails');
-    exit();
-}
-
-//ensuring CVC is only 3 digits
-if (strlen($_POST['cardCVC']) != 3){
-    $_SESSION['Message3'] = "<p style = 'color:red;'>Card CVC must be 3 digits long.</p>";
-    header('Location: ../accountPage.php?modal=editDetails');
-    exit();
-}
 
 
 
@@ -80,7 +59,7 @@ try{
     //updating details
     echo'<br>start of try';
     $stmt = $conn->prepare("UPDATE Users
-    SET username=:username, forename=:forename, surname=:surname, email=:email, telephone=:telephone, postcode=:postcode, addressLine=:addressLine, cardNo=:cardNo, cardName=:cardName, cardExpiry=:cardExpiry, cardCVC=:cardCVC
+    SET username=:username, forename=:forename, surname=:surname, email=:email, telephone=:telephone, postcode=:postcode, addressLine=:addressLine
     WHERE userID=:userID");
     $stmt->bindParam(':username', $_POST['username']);
     $stmt->bindParam(':forename', $_POST['forename']);
@@ -89,10 +68,6 @@ try{
     $stmt->bindParam(':telephone', $_POST['telephone']);
     $stmt->bindParam(':postcode', $_POST['postcode']);
     $stmt->bindParam(':addressLine', $_POST['addressLine']);
-    $stmt->bindParam(':cardNo', $_POST['cardNo']);
-    $stmt->bindParam(':cardName', $_POST['cardName']);
-    $stmt->bindParam(':cardExpiry', $_POST['cardExpiry']);
-    $stmt->bindParam(':cardCVC', $_POST['cardCVC']);
     $stmt->bindParam(':userID', $_SESSION['userID']);
     $stmt->execute();
 

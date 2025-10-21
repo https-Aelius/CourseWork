@@ -22,9 +22,11 @@
 </head>
 <body>
     <nav class = "navbar navbar-default navbar-fixed-top">  
-        <div class = "navbar-brand" style = "font-size:20px;">
-            BOTTLELEAK
-        </div>
+        <a href="mainPage.php">
+            <div class = "navbar-brand" style = "font-size:20px;">
+                BOTTLELEAK
+            </div>
+        </a>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
                 <li><a href = "">WATER BOTTLES</a></li>
@@ -258,7 +260,7 @@
     <div class="navbar-bottom">
     </div>
 
-        <?php include_once('basketModal.php'); ?>
+    <?php include_once('basketModal.php'); ?>
 
     
 </body>

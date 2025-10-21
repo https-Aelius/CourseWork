@@ -20,19 +20,24 @@
     <title>BottleLeak & Co.</title>
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
 <nav class = "navbar navbar-default navbar-fixed-top">  
-        <div class = "navbar-brand" style = "font-size:20px;">
-            BOTTLELEAK
-        </div>
+        <a href="mainPage.php">
+            <div class = "navbar-brand" style = "font-size:20px;">
+                BOTTLELEAK
+            </div>
+        </a>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
                 <li><a href = "">WATER BOTTLES</a></li>
@@ -105,11 +110,9 @@
                                     $telephone = $row['telephone'];
                                     $postcode = $row['postcode'];
                                     $addressLine = $row['addressLine'];
-                                    $cardNo = $row['cardNo'];
-                                    $cardName = $row['cardName'];
-                                    $cardExpiry = $row['cardExpiry'];
-                                    $cardCVC = $row['cardCVC'];
+                                    
                                 }
+                                $_SESSION['username'] = $username;
                             ?>
                             <!--End of PHP-->
                             <!--Start of the form-->
@@ -153,20 +156,7 @@
                                     <input type = 'text' name = 'postcode' value='<?php echo($postcode)?>' required>
                                     <input type = 'text' name = 'addressLine' value='<?php echo($addressLine)?>' required>
 
-                                    <h3>
-                                        Payment
-                                    </h3>
-                                    <?php
-                                        session_start();
-                                        if (isset($_SESSION['Message3'])){
-                                            echo($_SESSION['Message3']);
-                                            unset($_SESSION['Message3']);
-                                        }
-                                    ?>
-                                    <input type = 'number' name = 'cardNo' value='<?php echo($cardNo)?>' required>
-                                    <input type = 'text' name = 'cardName' value='<?php echo($cardName)?>' required>
-                                    <input type = 'text' name = 'cardExpiry' value='<?php echo($cardExpiry)?>' required>
-                                    <input type = 'number' name = 'cardCVC' value='<?php echo($cardCVC)?>' required>
+                                    
 
 
                                     <h3>
@@ -231,10 +221,7 @@
                                         $telephone = $row['telephone'];
                                         $postcode = $row['postcode'];
                                         $addressLine = $row['addressLine'];
-                                        $cardNo = $row['cardNo'];
-                                        $cardName = $row['cardName'];
-                                        $cardExpiry = $row['cardExpiry'];
-                                        $cardCVC = $row['cardCVC'];
+                                        
                                     }
                                     ?>
                                      <div class="form-group row">
@@ -265,22 +252,7 @@
                                             <label>Address Line</label>
                                             <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($addressLine)?>'>
                                     </div>
-                                    <div class="form-group row">
-                                            <label>Card Number</label>
-                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardNo)?>'>
-                                    </div>
-                                    <div class="form-group row">
-                                            <label>Card Name</label>
-                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardName)?>'>
-                                    </div>
-                                    <div class="form-group row">
-                                            <label>Card Expiry</label>
-                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardExpiry)?>'>
-                                    </div>
-                                    <div class="form-group row">
-                                            <label>Card CVC</label>
-                                            <input type="text" readonly class="form-control-plaintext input-for-accountPage" id="staticEmail" value='<?php echo($cardCVC)?>'>
-                                        </div>
+                                    
                                         
 
                                 <button type = 'button' class = 'btn btn-sixth' data-toggle='modal' data-target='#myModal'>Edit</button>
@@ -290,8 +262,32 @@
                     <div class = 'col-md-8'>
                         <div class='customColumn'>
                             <h3>Past Orders</h3>
-                            <p>[the details]......]</p>
-                            <button type = 'submit' id = 'signUpButton' class = 'btn btn-sixth'>Contact Us</button>
+                                <?php
+                                $sql = "SELECT Orders.deliveryID, Products.name, Products.productImage, Orders.orderDate 
+                                        FROM Orders
+                                        JOIN Products ON Orders.itemID = Products.itemID
+                                        WHERE Orders.userID = :userID
+                                        ORDER BY Orders.orderDate DESC";
+                                $stmt = $conn->prepare($sql);
+                                $stmt->bindParam(':userID', $_SESSION['userID']);
+                                $stmt->execute();
+                                while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
+                                    $orderID = $row['deliveryID'];
+                                    $productName = $row['name'];
+                                    $productImage = $row['productImage'];
+                                    $orderDate = $row['orderDate'];
+
+                                    echo "<div class='productItem' style='margin-bottom:10px; display:flex; align-items:center;'>
+                                            <img src=Images/$productImage style='width:100px; height:100px; margin-right:20px;'>
+                                            <div>
+                                                <p><b>Order ID: $orderID</b></p>
+                                                <p>Product Name: $productName</p>
+                                                <p>Order Date: $orderDate</p>
+                                            </div>
+                                        </div>";   
+                                }
+                                ?>
+                            <button type = 'submit' class = 'btn btn-sixth'>Contact Us</button>
                         </div>
                     </div>
                 </div>
