@@ -41,10 +41,13 @@ if (isset($_GET['itemID'])) {
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="script.js" defer></script>
+
 </head>
 <body>
     <nav class = "navbar navbar-default navbar-fixed-top">  
@@ -97,15 +100,12 @@ if (isset($_GET['itemID'])) {
 
     <!--Body of the website-->
     <main>
-        <div class="container productPage">
+        <div class="container productPage" style='min-height:100dvh; padding-top:100px; padding-bottom:100px;'>
             <div class="row">
                 <!--Image gallery-->
                 <div class="col-md-6 cold-sm-12 text-center">
                     <div class="mainImage">
                         <img src="Images/<?php echo $productImage; ?>">
-                    </div>
-                    <div class="thumbnailList">
-                        <img src="Images/<?php echo $dimensionImage; ?>">
                     </div>
                 </div>
                 <!--Info of product-->
@@ -117,7 +117,9 @@ if (isset($_GET['itemID'])) {
 
                     <h2 class="productTitle"><?php echo $name;?></h2>
 
-                    <div class="rating"></div>
+                    <div class="rating">
+                        
+                    </div>
 
                     <div class="priceSection">
                         <?php if ($discount > 0): ?>
@@ -199,6 +201,231 @@ if (isset($_GET['itemID'])) {
                 </div>
 
             </div>
+        </div>
+        <div class="container" style='padding:64px 20px; width:100%; background-color: #dedede; border-top:1.5px solid #2c2c2c; border-bottom:1.5px solid #2c2c2c;'>
+            <div class="productDimension">
+                <div class='productDimensionSlider' style="margin-left:1vh;">
+                    <h3 class="productDimensionTitle">Active Dimensions</h3>
+                    <div class="dimensionSlider" style="display:flex; gap:32px;">
+                        <ul>
+                            <?php
+                            if ($productType == 'Water Bottles'){
+                                echo "
+                            <li class='dimensionSliderNav active'>Current Bottle
+                                
+                            </li>    
+                            <li class='dimensionSliderNav'>Crayon Shin Chan Series
+                                
+                            </li>
+                            <li class='dimensionSliderNav'>Taller 32oz Bottle
+                                
+                            </li>
+                            <li class='dimensionSliderNav'>Wider 32oz Bottle
+                                
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class='productDimensionSlider'>
+                    <!--Current Bottle-->
+                    <img class='productDimensionSliderImages active' src='Images/$dimensionImage' style='width:100%; height:auto;'>
+                    <!--Crayon Shin Chan bottles-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/S74979eefff16409fad5d6a832f7d5eecf.jpg_960x960q75.avif' style='width:100%; height:auto;'>
+                    <!--Taller 32oz Bottles-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/Knicks_Bottle_Dimensions_small_8d088ecf-2c0c-4b93-9965-c84ee28f3904.jpeg' style='width:100%; height:auto;'>
+                    <!--Wider 32oz Bottles-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/w-active-32-sticker-dimension.png' style='width:100%; height:auto;'>
+                </div>
+                
+                            ";
+                            }
+                            if( $productType == 'Food Storage'){
+                                echo "
+                            <li class='dimensionSliderNav active'>Current Food Storage
+                                
+                            </li>    
+                            <li class='dimensionSliderNav'>18oz
+                                
+                            </li>
+                            <li class='dimensionSliderNav'>25oz
+                                
+                            </li>
+                            <li class='dimensionSliderNav'>32oz
+                                
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class='productDimensionSlider'>
+                    <!--Current Bottle-->
+                    <img class='productDimensionSliderImages active' src='Images/$dimensionImage' style='width:100%; height:auto;'>
+                    <!--18oz-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/jar_small_799153ca-8ac8-4408-83a0-eb6adef93b9c.png' alt='not available' style='width:100%; height:auto;'>
+                    <!--25oz-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/jar_med.png' style='width:100%; height:auto;'>
+                    <!--32oz-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/jar_big.png' style='width:100%; height:auto;'>
+                </div>
+                                ";
+                            }
+                            if ( $productType == 'Pets'){
+                                echo "
+    
+
+                            <li class='dimensionSliderNav'>Small
+                                
+                            </li>
+                            <li class='dimensionSliderNav'>Large
+                                
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class='productDimensionSlider'>
+                    <!--Small-->
+                    <img class='productDimensionSliderImages active' src='Images/Pre database Image/bowl4_73d610fa-9515-40a4-960b-188eed157866.png' style='width:100%; height:auto;'>
+                    <!--Large-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/bowl8_8a4b751d-c25c-4559-ac23-c0227b476a15.png' alt='not available' style='width:100%; height:auto;'>
+                </div>
+                                ";
+                            }
+                            if ( $productType == 'Accessories'){
+                                echo "
+                                <li class='dimensionSliderNav'>Current Item
+                                
+                            </li>
+                            <li class='dimensionSliderNav'>Key Chain
+                                
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class='productDimensionSlider'>
+                    <!--Current Item-->
+                    <img class='productDimensionSliderImages active' src='Images/$dimensionImage' style='width:100%; height:auto;'>
+                    <!--Key Chain-->
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/Crayon Shinchan & Shiro Hero Duo Keychain Dimension.png' alt='not available' style='width:100%; height:auto;'>
+                </div>
+                                ";
+                            }
+
+                            ?>
+                <div class='productDimensionSliderExtra' style='margin-right:1vh;'>
+                    <div class='productDimensionExtras'>
+                        <div class="productDimensionItems">
+                            <img src="Images/Pre database Image/cold.png" style="object-fit:contain; object-position:center" width="" height="45">
+                            <p style='font-size: 14px;'>24 HOURS HOT/COLD</p>
+
+                        </div>
+                        <div class="productDimensionItems">
+                            <img src="Images/Pre database Image/steel.avif" style="object-fit:contain; object-position:center" width="" height="45">
+                            <p style='font-size: 14px;'>LAYERED WITH COMPOSITE MATERIALS</p>
+
+                        </div>
+                        <div class="productDimensionItems">
+                            <img src="Images/Pre database Image/bpa_free_235bf96a-35e5-49e0-9adb-cbbb36da2338.avif" style="object-fit:contain; object-position:center" width="" height="45">
+                            <p style='font-size: 14px;'>BPA FREE</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>    
+        <div class="container" style='border-bottom:1.5px solid #2c2c2c; width:100%; min-height:50dvh; padding-top:100px; padding-bottom:100px;'>
+
+                <h1 style="margin-right:65%; margin-bottom:32px; font-size:36px;">Leave a Review</h1>
+                <div class="container Reviews" style="">
+
+                        <div class="reviewColumn">
+                            <div class="rating-card">
+                                <!--star rating code-->
+                                <h3 style="font-size:32px;">Star Rating</h3>
+                                <div class="star-rating animated-stars" style='margin-top:1vh;'>
+                                    <input type="radio" id="star5" name="rating" value="5">
+                                    <label for="star5" class="bi bi-star-fill"></label>
+                                    <input type="radio" id="star4" name="rating" value="4">
+                                    <label for="star4" class="bi bi-star-fill"></label>
+                                    <input type="radio" id="star3" name="rating" value="3">
+                                    <label for="star3" class="bi bi-star-fill"></label>
+                                    <input type="radio" id="star2" name="rating" value="2">
+                                    <label for="star2" class="bi bi-star-fill"></label>
+                                    <input type="radio" id="star1" name="rating" value="1">
+                                    <label for="star1" class="bi bi-star-fill"></label>
+                                </div>
+                                <p class="text-muted" style='margin-top:2.5vh;'>Click to rate</p>
+                            </div>
+                        </div>
+                        <script>
+                            document.querySelectorAll('.star-rating:not(.readonly) label').forEach(star => {
+                                star.addEventListener('click', function() {
+                                    this.style.transform = 'scale(1.2)';
+                                    setTimeout(() => {
+                                        this.style.transform = 'scale(1)';
+                                    }, 200);
+                                });
+                            });
+                        </script>
+                        <div class="reviewColumn">
+                            <div class="input-group">
+                                <textarea name="description" type='text' class='descriptionTextArea' placeholder='Enter Review Here...' style='padding: 20px 20px; min-height:25dvh;'></textarea>
+                            </div>
+                        </div>  
+                        
+            
+                </div>
+                <a type ='button' href='#' id = 'addReview' class='btn btn-sixth' style='margin-left:80%;'>Submit</a>
+                <script>
+                        document.getElementById("addReview").addEventListener("click", function(event) {
+
+                            const ratingNumber = document.querySelector('input[name="rating"]:checked').value;
+                            const itemID = <?php echo $itemID; ?>;
+                            const userID = <?php echo $_SESSION['userID']; ?>;
+                            const reviewContent = document.querySelector('.descriptionTextArea').value;
+                            window.location.href = `reviews_logic.php?itemID=${itemID}&userID=${userID}&ratingNumber=${ratingNumber}&reviewContent=${encodeURIComponent(reviewContent)}`;
+                        });
+                    </script>
+            <div class="container userReviews">
+                <h1 style="margin-bottom:32px; font-size:32px; margin-right:65%;">User Reviews</h1>
+                <?php
+                    $stmt = $conn->prepare("SELECT Reviews.*, Users.username
+                    FROM Reviews 
+                    JOIN Users ON Reviews.userID = Users.userID 
+                    WHERE Reviews.itemID = :itemID ORDER BY Reviews.dateReview DESC");
+                    $stmt->bindParam(':itemID', $itemID);
+                    $stmt->execute();
+                    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);    
+
+                    if ($reviews) {
+                        foreach ($reviews as $review) {
+                            echo "<div class='userReviewCard' style='margin-bottom:24px; padding:16px; border:1px solid #ccc; border-radius:8px;'>";
+                            echo "<h4>" . htmlspecialchars($review['username']) . "</h4>";
+                            echo "<div class='star-rating-users readonly' style='margin-top:8px;'>";
+
+                            for ($i = 1; $i <= 5; $i++) {
+
+                                
+                                if ($i <= $review['ratingNumber']) {
+                                    echo "<span class='bi bi-star-fill' style='color: gold;'></span>";
+                                } else {
+                                    echo "<span class='bi bi-star' style='color: gold;'></span>";
+                                }
+                            }
+
+                            echo "</div>";
+                            echo "<p style='margin-top:8px;'>" . htmlspecialchars($review['reviewContent']) . "</p>";
+                            echo "<small class='text-muted'>Reviewed on " . date('F j, Y, g:i a', strtotime($review['dateReview'])) . "</small>";
+                            echo "</div>";
+                        }
+                    } else {
+                        echo "<p>No reviews yet. Be the first to review this product!</p>";
+                    }
+                ?>
+            </div>        
         </div>
     </main>
     

@@ -74,7 +74,7 @@ $stmt=$conn->prepare("
         CREATE TABLE Reviews (
             reviewID INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             userID INT(6) NOT NULL,
-            reviewContent VARCHAR(1000) NOT NULL,
+            reviewContent VARCHAR(1000) NULL,
             itemID INT(6) NOT NULL,
             ratingNumber CHAR(2) NOT NULL,
             dateReview DATETIME NOT NULL
