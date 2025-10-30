@@ -186,6 +186,7 @@
                                 <?php
                                 ?>
                             </div>
+                            <a type ='button' href='viewOrders.php' class='btn btn-sixth' style='margin-left:38%;'>View Orders</a>
                         </div>
                     <!--记得要写php code -->
                         
