@@ -1,5 +1,9 @@
 <?php
     session_start();
+
+
+    $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; 
+
 ?>
 <!DOCTYPE html>
 <html lang = "en">
@@ -29,12 +33,12 @@
         </a>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
-                <li><a href = "">WATER BOTTLES</a></li>
-                <li><a href = "">FOOD STORAGE</a></li>
-                <li><a href = "">PETS</a></li>
-                <li><a href = "">ACCESSORIES</a></li>
-                <li><a href = "">SUPPORT</a></li>
-                <li><a href = "">ABOUT</a></li>
+                <li><a href = "waterBottleSec.php">WATER BOTTLES</a></li>
+                <li><a href = "foodStorageSec.php">FOOD STORAGE</a></li>
+                <li><a href = "petsSec.php">PETS</a></li>
+                <li><a href = "accessoriesSec.php">ACCESSORIES</a></li>
+                <li><a href = "supportPage.php">CONTACT</a></li>
+                <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
                     <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">
@@ -94,9 +98,7 @@
                                 <h2>A Revolutionary Bottle</h2>
                                 <p class = 'price'>$ <?php echo $price; ?></p>
                                 <p class="description">A bottle in collaboration with the Lakers</p>
-                                <button class="addToCart">
-                                    Add to Cart
-                                </button>
+                                <a type ='button' href='genericProductPage.php?itemID=29' class='addToCart'>Add to Cart</a>
                             </div>
                         </div>
                         <figure class = 'image'>
@@ -122,9 +124,7 @@
                                 <h2>A Revolutionary Bottle</h2>
                                 <p class = 'price'>$ <?php echo $price; ?></p>
                                 <p class="description">A bottle in collaboration with the Bulls</p>
-                                <button class="addToCart">
-                                    Add to Cart
-                                </button>
+                                <a type ='button' href='genericProductPage.php?itemID=26' class='addToCart'>Add to Cart</a>
                             </div>
                         </div>
                         <figure class = 'image'>
@@ -150,9 +150,8 @@
                                 <h2>A Revolutionary Bottle</h2>
                                 <p class = 'price'>$ <?php echo $price; ?></p>
                                 <p class="description">A bottle in collaboration with the Mavs</p>
-                                <button class="addToCart">
-                                    Add to Cart
-                                </button>
+
+                                <a type ='button' href='genericProductPage.php?itemID=30' class='addToCart'>Add to Cart</a>
                             </div>
                         </div>
                         <figure class = 'image'>
@@ -205,7 +204,7 @@
                                 }
                                 $actualPrice = number_format($actualPrice, 2);
                                 echo("
-                                <a href='genericProductPage.php?itemID=$itemID' class='product-link' style='text-decoration:none; color:black;'>
+                                <a href='genericProductPage.php?itemID=$itemID' class='product-link-homepage' style='text-decoration:none; color:black;'>
                                 <div class='product-card'>
                                     <div class='product-image'>
                                 ");
@@ -244,6 +243,7 @@
 
 
                     ?>  
+                    
                 
                     
                     

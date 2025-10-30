@@ -1,6 +1,7 @@
 <?php
 session_start();
 include_once('connection.php');
+$_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
 
 if (isset($_GET['itemID'])) {
     $itemID = $_GET['itemID'];
@@ -58,12 +59,12 @@ if (isset($_GET['itemID'])) {
         </a>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
-                <li><a href = "">WATER BOTTLES</a></li>
-                <li><a href = "">FOOD STORAGE</a></li>
-                <li><a href = "">PETS</a></li>
-                <li><a href = "">ACCESSORIES</a></li>
-                <li><a href = "">SUPPORT</a></li>
-                <li><a href = "">ABOUT</a></li>
+                <li><a href = "waterBottleSec.php">WATER BOTTLES</a></li>
+                <li><a href = "foodStorageSec.php">FOOD STORAGE</a></li>
+                <li><a href = "petsSec.php">PETS</a></li>
+                <li><a href = "accessoriesSec.php">ACCESSORIES</a></li>
+                <li><a href = "supportPage.php">CONTACT</a></li>
+                <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
                     <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">
@@ -118,7 +119,20 @@ if (isset($_GET['itemID'])) {
                     <h2 class="productTitle"><?php echo $name;?></h2>
 
                     <div class="rating">
-                        
+                        <?php
+                        $stmt = $conn->prepare("SELECT AVG(ratingNumber) FROM Reviews WHERE itemID = :itemID");
+                        $stmt->bindParam(':itemID', $itemID);
+                        $stmt->execute();
+                        $averageRating = $stmt->fetchColumn();
+                        $fullStars = floor($averageRating);
+                        for ($i = 1; $i <= 5; $i++) {
+                            if ($i <= $fullStars) {
+                                echo "<span class='bi bi-star-fill' style='color:gold;'></span>";
+                            } else {
+                                echo "<span class='bi bi-star' style='color:gold;'></span>";
+                            }
+                        }
+                        ?>
                     </div>
 
                     <div class="priceSection">

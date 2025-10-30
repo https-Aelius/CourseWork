@@ -67,6 +67,17 @@ catch (PDOException $e) {
     $conn->rollBack(); //going back if there is an error during transaction
     die('Error: ' . $e->getMessage());
 }
-header('Location: mainPage.php');
+//header('Location: mainPage.php');
+//redirecting to the basketModal after adding item to cart
+
+if (isset($_SESSION['last_page'])) {
+    $redirect = $_SESSION['last_page'];
+    unset($_SESSION['last_page']);
+    header("Location: $redirect");
+
+} else {
+    header("Location: mainPage.php"); // fallback if last_page is not set
+}
+exit();
 
 ?>

@@ -40,12 +40,12 @@
         </a>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
-                <li><a href = "">WATER BOTTLES</a></li>
-                <li><a href = "">FOOD STORAGE</a></li>
-                <li><a href = "">PETS</a></li>
-                <li><a href = "">ACCESSORIES</a></li>
-                <li><a href = "">SUPPORT</a></li>
-                <li><a href = "">ABOUT</a></li>
+                <li><a href = "waterBottleSec.php">WATER BOTTLES</a></li>
+                <li><a href = "foodStorageSec.php">FOOD STORAGE</a></li>
+                <li><a href = "petsSec.php">PETS</a></li>
+                <li><a href = "accessoriesSec.php">ACCESSORIES</a></li>
+                <li><a href = "supportPage.php">CONTACT</a></li>
+                <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
                     <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">

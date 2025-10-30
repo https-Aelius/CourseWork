@@ -1,3 +1,10 @@
+<?php
+
+session_start();
+include_once('connection.php');
+$_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
+?>
+
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -23,10 +30,10 @@
         </a>
         <div class = "collapse navbar-collapse" id="myNavbar">
             <ul class = "nav navbar-nav navbar-right">
-                <li><a href = "">WATER BOTTLES</a></li>
-                <li><a href = "">FOOD STORAGE</a></li>
-                <li><a href = "">PETS</a></li>
-                <li><a href = "">ACCESSORIES</a></li>
+                <li><a href = "waterBottleSec.php">WATER BOTTLES</a></li>
+                <li><a href = "foodStorageSec.php">FOOD STORAGE</a></li>
+                <li><a href = "petsSec.php">PETS</a></li>
+                <li><a href = "accessoriesSec.php">ACCESSORIES</a></li>
                 <li><a href = "">SUPPORT</a></li>
                 <li><a href = "">ABOUT</a></li>
                 <li>
@@ -71,5 +78,6 @@
     <!--Bottom of navbar-->
     <div class="navbar-bottom">
     </div>
+    <?php include_once('basketModal.php'); ?>
 </body>
 </html>

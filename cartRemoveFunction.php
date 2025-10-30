@@ -10,5 +10,13 @@ if (isset($_GET['basketID'])) {
     $stmt->bindParam(':basketID', $basketID);
     $stmt->execute();
 }
-header('Location: mainPage.php');
+if (isset($_SESSION['last_page'])) {
+    $redirect = $_SESSION['last_page'];
+    unset($_SESSION['last_page']);
+    header("Location: $redirect");
+
+} else {
+    header("Location: mainPage.php"); // fallback if last_page is not set
+}
+exit();
 ?>

@@ -32,6 +32,14 @@ try{
 
     $conn->commit(); 
 
+    if (isset($_SESSION['last_page'])) {
+        $redirect = $_SESSION['last_page'];
+        unset($_SESSION['last_page']);
+        header("Location: $redirect");
+    } else {
+        header("Location: mainPage.php"); // fallback if last_page is not set
+    }
+    exit();
     //header('Location: .php');
 } catch (PDOException $e) {
     $conn->rollBack(); //going back if there is an error during transaction
