@@ -1,6 +1,6 @@
 <?php
     session_start();
-
+    include_once('connection.php');
 
     $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; 
 
@@ -17,6 +17,7 @@
     <script src="product-slider.js" defer></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -40,7 +41,7 @@
                 <li><a href = "supportPage.php">CONTACT</a></li>
                 <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
-                    <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
+                    <form action="generalSearch.php" class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">
                             <input type = "text" class = 'navbar-search-input' placeholder = 'SEARCH'>
                             <button type = "submit" class = 'btn btn-search'>
@@ -52,7 +53,30 @@
                 </li>
                 <!--Change this href later-->
                 <!--Cart-->
-                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
+                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;">
+                <!--adding span-->
+                <span class="badge badge-pill badge-danger" id="cart-count" style="width:25px; letter-spacing: .15px;">
+                    <?php
+                    $stmt5 = $conn->prepare("SELECT * FROM Basket WHERE userID=:userID");
+
+                    $stmt5->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
+            
+                    $stmt5->execute();
+                    //loop through the basket database based of the userID
+            
+                    while($basketRow = $stmt5->fetch(PDO::FETCH_ASSOC)){
+                        $productQuantity = $basketRow['quantBasket'];
+                        $count+= $productQuantity;
+                    }
+                    if ($count>0){
+                        echo $count;
+                    }
+                    else{
+                        echo "0";
+                    }
+
+                    ?>
+                </a></li> <!--Cart-->
 
                 <!-- account pages depending on the role --> 
                 <?php
@@ -243,16 +267,113 @@
 
 
                     ?>  
+                    </a>
                     
                 
                     
                     
                 </div>
+                
 
 
 
 
             </div>
+
+
+            <!--Second Section-->
+
+            <div class="product" style="padding:0; margin-top:5vh; border:none;">
+                <h2 class="product-category">Water Bottles</h2>
+            </div>
+            <div class="product" style='height:100%;'>
+                
+                <div class="container" style='height:80%;'>
+                    <button class="pre-btn" style="background: linear-gradient(270deg, rgba(255, 255, 255, 0) 0%, #fff 100%);"><</button>
+
+                    <button class="nxt-btn">></button>
+                </div>
+                <div class="product-container" style="min-height:60vh;">
+                    <!--Start while statement for php-->  
+                    <?php
+
+                        $stmt2 = $conn->prepare("SELECT * FROM Products WHERE productType = 'Water Bottles'");
+                        $stmt2->execute();
+                        if($stmt2->rowCount()>0){
+                            while($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)){
+                                $itemID=$row2['itemID'];
+                                $name=$row2['name'];
+                                $price=$row2['price'];
+                                $productImage=$row2['productImage'];
+                                $description=$row2['description'];
+                                $dimensionImage=$row2['dimensionImage'];
+                                $quant=$row2['quant'];
+                                $productType=$row2['productType'];
+                                $itemSold=$row2['itemSold'];
+                                $discountRate=$row2['discountRate'];
+                                if($discountRate>0){
+                                    $actualPrice= $price - ($price * ($discountRate/100));
+                                } else {
+                                    $actualPrice = $price;
+                                }
+                                $actualPrice = number_format($actualPrice, 2);
+                                echo("
+                                <a href='genericProductPage.php?itemID=$itemID' class='product-link-homepage' style='text-decoration:none; color:black;'>
+                                <div class='product-card'>
+                                    <div class='product-image'>
+                                ");
+                                if($discountRate>0){
+                                    echo("<span class='discount-tag'>$discountRate% Off</span>
+
+                                        <img src='Images/$productImage' class='product-thumb' style='background-color:#fff !important;'>
+
+                                        <button class='card-btn'>Add to Basket</button>
+                                    </div>
+                                    <div class='product-info'>
+                                        <h3 class='product-brand'>$name</h3>
+
+                                        <span class='price'>$ $actualPrice</span><span class='actual-price'>$ $price</span>
+                                    </div>
+                                </div>
+                                </a>
+                                    
+                                    ");
+                                } else{
+                                    echo("
+                                    
+                                    <img src='Images/$productImage' class='product-thumb' style='background-color:#fff !important;'>
+                                        <button class='card-btn'>Add to Basket</button>
+                                    </div>
+                                    <div class='product-info'>
+                                        <h3 class='product-brand'>$name</h3>
+
+                                        <span class='price'>$ $actualPrice</span>
+                                    </div>
+                                </div>
+                                </a>
+
+                                    ");
+                                }
+                                
+
+                            }
+                        }
+
+
+                    ?>  
+                    
+                    
+                
+                    
+                    
+                </div>
+                
+
+
+
+
+            </div>        
+
         </div>
     </main>
 

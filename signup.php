@@ -1,3 +1,6 @@
+<?php
+include_once('connection.php');
+?>
 <!DOCTYPE html>
 <html lang = "en">
 <head>
@@ -32,7 +35,7 @@
                 <li><a href = "supportPage.php">CONTACT</a></li>
                 <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
-                    <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
+                    <form action="generalSearch.php" class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">
                             <input type = "text" class = 'navbar-search-input' placeholder = 'SEARCH'>
                             <button type = "submit" class = 'btn btn-search'>
@@ -42,7 +45,30 @@
                         
                     </form>
                 </li>
-                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
+                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;">
+                <!--adding span-->
+                <span class="badge badge-pill badge-danger" id="cart-count" style="width:25px; letter-spacing: .15px;">
+                    <?php
+                    $stmt = $conn->prepare("SELECT * FROM Basket WHERE userID=:userID");
+
+                    $stmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
+            
+                    $stmt->execute();
+                    //loop through the basket database based of the userID
+            
+                    while($basketRow = $stmt->fetch(PDO::FETCH_ASSOC)){
+                        $productQuantity = $basketRow['quantBasket'];
+                        $count+= $productQuantity;
+                    }
+                    if ($count>0){
+                        echo $count;
+                    }
+                    else{
+                        echo "0";
+                    }
+
+                    ?>
+            </a></li> <!--Cart-->
                 <!-- account pages depending on the role --> 
                 <?php
                 if(isset($_SESSION)){
@@ -110,12 +136,30 @@
                 ?>
                 <div class = "passwordContainer">
                     <input name = 'password' type = 'password' id = 'password' placeholder = 'Password' required>
-                    <i class = 'fa-solid fa-eye' id = 'togglePassword' style = 'cursor: pointer;'></i>
+                    <input type="checkbox" class = 'fa-solid fa-eye' id = 'togglePassword' style = 'cursor: pointer; border:none;' onclick="openEyeFunction()"></input>
                 </div>
                 <div class = "passwordContainer">
                     <input name = 'confirm' type = 'password' id='confirmPassword' placeholder='Confirm Password' required>
-                    <i class = 'fa-solid fa-eye' id = 'toggleConfirmPassword' style = 'cursor: pointer;'></i>
+                    <input type="checkbox" class = 'fa-solid fa-eye' id = 'togglePassword' style = 'cursor: pointer; border:none;' onclick="openEyeFunction1()"></input>
                 </div>
+                <script>
+                    function openEyeFunction() {
+                        var viewPass = document.getElementById("password");
+                        if (viewPass.type === "password") {
+                            viewPass.type = "text";
+                        } else {
+                            viewPass.type = "password";
+                        }
+                    }
+                    function openEyeFunction1() {
+                        var viewPass = document.getElementById("confirmPassword");
+                        if (viewPass.type === "password") {
+                            viewPass.type = "text";
+                        } else {
+                            viewPass.type = "password";
+                        }
+                    }
+                </script>
                 <br>
                 <h3>
                     Contact

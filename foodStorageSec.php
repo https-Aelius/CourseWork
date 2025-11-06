@@ -38,7 +38,7 @@ $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
                 <li><a href = "supportPage.php">CONTACT</a></li>
                 <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
-                    <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
+                    <form action="generalSearch.php" class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">
                             <input type = "text" class = 'navbar-search-input' placeholder = 'SEARCH'>
                             <button type = "submit" class = 'btn btn-search'>
@@ -48,7 +48,30 @@ $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
                         
                     </form>
                 </li>
-                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
+                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;">
+                <!--adding span-->
+                <span class="badge badge-pill badge-danger" id="cart-count" style="width:25px; letter-spacing: .15px;">
+                    <?php
+                    $stmt = $conn->prepare("SELECT * FROM Basket WHERE userID=:userID");
+
+                    $stmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
+            
+                    $stmt->execute();
+                    //loop through the basket database based of the userID
+            
+                    while($basketRow = $stmt->fetch(PDO::FETCH_ASSOC)){
+                        $productQuantity = $basketRow['quantBasket'];
+                        $count+= $productQuantity;
+                    }
+                    if ($count>0){
+                        echo $count;
+                    }
+                    else{
+                        echo "0";
+                    }
+
+                    ?>
+            </a></li> <!--Cart-->
                 <!-- account pages depending on the role --> 
                 <?php
                 if(isset($_SESSION)){
@@ -78,7 +101,7 @@ $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
                 <div class="innerContainer" style="min-height:auto; border-bottom:1px solid #2c2c2c;">
                     <ul class="breadcrumb" style='margin-bottom:16px; line-height:1.1'>
                         <li><a href="mainPage.php" style='text-decoration:none; color:#2c2c2c;'>Home</a></li>
-                        <li><a href="waterBottleSec.php" style='text-decoration:none; color:#2c2c2c;'>Food Storage</a></li>
+                        <li><a href="foodStorageSec.php" style='text-decoration:none; color:#2c2c2c;'>Food Storage</a></li>
                     </ul>
                     <div class="main_column_heading" style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 24px;">
                     <div class="column" style="display: flex; align-items: flex-end; gap:32px;">

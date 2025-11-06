@@ -96,21 +96,27 @@ $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
 
     <!--Body of the website-->
     <main>
-        <div class="topSection">
-            <div class="container" style='min-height:auto; padding-top:0vh; width:100%;'>
-                <div class="innerContainer" style="min-height:auto; border-bottom:1px solid #2c2c2c;">
-                    <ul class="breadcrumb" style='margin-bottom:16px; line-height:1.1'>
-                        <li><a href="mainPage.php" style='text-decoration:none; color:#2c2c2c;'>Home</a></li>
-                        <li><a href="petsSec.php" style='text-decoration:none; color:#2c2c2c;'>Pets</a></li>
-                    </ul>
-                    <div class="main_column_heading" style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 24px;">
-                    <div class="column" style="display: flex; align-items: flex-end; gap:32px;">
-                        <h1  style=" line-height:1.1; margin-bottom:1.5vh;">Pets</h1>
-                    </div>        
-                    
+        <div class="search-header" style="padding-top:75px;">
+            <div class="form-group-row">
+                <h1 style="text-align: center; font-size:32px">Search Results</h1>
+
+                <form class="general-search-form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" style="width:100%; !important; self-align:right; flex-direction:row; height:10%;">
+                    <div class="">
+
+                        <input name ='search' type="" id='search-box-general' class="general-search-box" placeholder="Search product by name or description..." style="margin-left:20%;">
+
+                        <button style='margin-right:23.5%; margin-top:20px; font-size:18px;' type = "reset" class ='btn btn-search'>
+                            <span class="glyphicon glyphicon-remove-circle"></span> <!--clear icon-->
+                        </button> 
+                        <button style='margin-right:20%; margin-top:20px; font-size:18px; border-left: 1px solid #2c2c2c2c;' type = "submit" class = 'btn btn-search'>
+                            <span class="glyphicon glyphicon-search"></span> <!--Search icon-->
+                        </button> 
                     </div>
-                </div>
+
+                </form>
+
             </div>
+            
         </div>
         <div class="mainSection container" style='display:flex; min-height:100dvh; padding-top:100px; padding-bottom:100px;'>
             <div class="product-grid-container" style='position:relative;'>
@@ -119,26 +125,20 @@ $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
             grid product-grid grid--2-col-tablet-down
             grid--4-col-desktop
             ">
-            <!-- 1st card -->
-                <li class="grid__item product-custom-card">
-
-                    <div class="card__media">
-                        <!-- a href here if product -->
-
-                        <img class="card__image" src="Images/Pre database Image/DSC02589-Edit_196376f9-17e2-4fc0-b2bc-f436d5b5f6e0.webp" alt="" style="height:100% !important; position: relative; min-height: 500px; overflow-clip-margin: content-box; overflow: clip;">
-
-                        <div class="product_collage_category_card__content">
-                            <h3 class="product_collage_category_card__title">
-                                Pets
-                            </h3>
-                        </div>
-                    </div>
-                </li>
-                <!-- 2nd card-->
+                <!-- other cards-->
                  <?php
                  include_once('connection.php');
-                 $stmt = $conn->prepare("SELECT * FROM Products WHERE productType = 'Pets'");
-                 $stmt->execute();
+
+                 if(isset($_POST['search'])){
+                    $search="%" . $_POST['search'] . "%";
+    
+    
+                    $stmt=$conn->prepare("SELECT * FROM Products WHERE name LIKE :search OR description LIKE :search");
+                    $stmt->bindParam(':search', $search, PDO::PARAM_STR);
+                } else{
+                    $stmt = $conn->prepare("SELECT * FROM Products");
+                }    
+                    $stmt->execute();
                  if($stmt->rowCount()>0){
                     while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                         $itemID=$row['itemID'];
@@ -159,7 +159,7 @@ $_SESSION['last_page'] = $_SERVER['REQUEST_URI']; // Store the current page URL
                         $actualPrice = number_format($actualPrice, 2);
                         echo ("
 
-                        <li class='grid__item product-custom-card'>
+                        <li class='grid__item product-custom-card' style=''>
                             <a href='genericProductPage.php?itemID=$itemID' class='product-link' style='text-decoration:none; color:black;'>
                                 <div class='product-card'>
                                     <div class='product-image'>

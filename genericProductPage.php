@@ -66,9 +66,9 @@ if (isset($_GET['itemID'])) {
                 <li><a href = "supportPage.php">CONTACT</a></li>
                 <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
-                    <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
+                    <form action="generalSearch.php" class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">
-                            <input type = "text" class = 'navbar-search-input' placeholder = 'SEARCH'>
+                            <input name ="search" type = "text" class = 'navbar-search-input' placeholder = 'SEARCH'>
                             <button type = "submit" class = 'btn btn-search'>
                             <span class="glyphicon glyphicon-search"></span> <!--Search icon-->
                             </button> 
@@ -76,7 +76,31 @@ if (isset($_GET['itemID'])) {
                         
                     </form>
                 </li>
-                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
+
+                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;">
+                <!--adding span-->
+                <span class="badge badge-pill badge-danger" id="cart-count" style="width:25px; letter-spacing: .15px;">
+                    <?php
+                    $stmt = $conn->prepare("SELECT * FROM Basket WHERE userID=:userID");
+
+                    $stmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
+            
+                    $stmt->execute();
+                    //loop through the basket database based of the userID
+            
+                    while($basketRow = $stmt->fetch(PDO::FETCH_ASSOC)){
+                        $productQuantity = $basketRow['quantBasket'];
+                        $count+= $productQuantity;
+                    }
+                    if ($count>0){
+                        echo $count;
+                    }
+                    else{
+                        echo "0";
+                    }
+
+                    ?>
+            </a></li> <!--Cart-->
                 <!-- account pages depending on the role --> 
                 <?php
                 if(isset($_SESSION)){
@@ -110,7 +134,7 @@ if (isset($_GET['itemID'])) {
                     </div>
                 </div>
                 <!--Info of product-->
-                <div class="col-md-6 col-sm-12">
+                <div class="col-md-6 col-sm-12" style="align-self:center; text-center;">
                     <ol class="breadcrumb" style="background:none;">
                         <li><a href='#'><?php echo $productType; ?></a></li>
                         <li><a href="#"><?php echo $name;?></a></li>
@@ -218,13 +242,14 @@ if (isset($_GET['itemID'])) {
         </div>
         <div class="container" style='padding:64px 20px; width:100%; background-color: #dedede; border-top:1.5px solid #2c2c2c; border-bottom:1.5px solid #2c2c2c;'>
             <div class="productDimension">
-                <div class='productDimensionSlider' style="margin-left:1vh;">
-                    <h3 class="productDimensionTitle">Active Dimensions</h3>
-                    <div class="dimensionSlider" style="display:flex; gap:32px;">
-                        <ul>
+                
                             <?php
                             if ($productType == 'Water Bottles'){
                                 echo "
+                                <div class='productDimensionSlider' style='margin-left:1vh;'>
+                    <h3 class='productDimensionTitle'>Active Dimensions</h3>
+                    <div class='dimensionSlider' style='display:flex; gap:32px;'>
+                        <ul>
                             <li class='dimensionSliderNav active'>Current Bottle
                                 
                             </li>    
@@ -254,8 +279,12 @@ if (isset($_GET['itemID'])) {
                 
                             ";
                             }
-                            if( $productType == 'Food Storage'){
+                            elseif( $productType == 'Food Jars'){
                                 echo "
+                <div class='productDimensionSlider' style='margin-left:1vh;'>
+                    <h3 class='productDimensionTitle'>Active Dimensions</h3>
+                    <div class='dimensionSlider' style='display:flex; gap:32px;'>
+                        <ul>
                             <li class='dimensionSliderNav active'>Current Food Storage
                                 
                             </li>    
@@ -284,9 +313,12 @@ if (isset($_GET['itemID'])) {
                 </div>
                                 ";
                             }
-                            if ( $productType == 'Pets'){
+                            elseif ( $productType == 'Pets'){
                                 echo "
-    
+    <div class='productDimensionSlider' style='margin-left:1vh;'>
+                    <h3 class='productDimensionTitle'>Active Dimensions</h3>
+                    <div class='dimensionSlider' style='display:flex; gap:32px;'>
+                        <ul>
 
                             <li class='dimensionSliderNav'>Small
                                 
@@ -306,8 +338,12 @@ if (isset($_GET['itemID'])) {
                 </div>
                                 ";
                             }
-                            if ( $productType == 'Accessories'){
+                            elseif ( $productType == 'Accessories'){
                                 echo "
+                                <div class='productDimensionSlider' style='margin-left:1vh;'>
+                    <h3 class='productDimensionTitle'>Active Dimensions</h3>
+                    <div class='dimensionSlider' style='display:flex; gap:32px;'>
+                        <ul>
                                 <li class='dimensionSliderNav'>Current Item
                                 
                             </li>
@@ -322,7 +358,7 @@ if (isset($_GET['itemID'])) {
                     <!--Current Item-->
                     <img class='productDimensionSliderImages active' src='Images/$dimensionImage' style='width:100%; height:auto;'>
                     <!--Key Chain-->
-                    <img class='productDimensionSliderImages' src='Images/Pre database Image/Crayon Shinchan & Shiro Hero Duo Keychain Dimension.png' alt='not available' style='width:100%; height:auto;'>
+                    <img class='productDimensionSliderImages' src='Images/Pre database Image/Crayon Shinchan & Shiro Hero Duo Keychain Dimension.png' alt='Image Unavailable' style='width:100%; height:auto;'>
                 </div>
                                 ";
                             }

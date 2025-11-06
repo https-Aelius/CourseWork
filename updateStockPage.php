@@ -45,7 +45,7 @@
                 <li><a href = "supportPage.php">CONTACT</a></li>
                 <li><a href = "aboutPage.php">ABOUT</a></li>
                 <li>
-                    <form class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
+                    <form action="generalSearch.php" class = "navbar-form navbar-right" role="search" style = "padding-left:20px; padding-right:15px;">
                         <div class="search-bar-wrapper">
                             <input type = "text" class = 'navbar-search-input' placeholder = 'SEARCH'>
                             <button type = "submit" class = 'btn btn-search'>
@@ -55,8 +55,48 @@
                         
                     </form>
                 </li>
-                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
-                <li><a href = ""><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> <!-- User picture -->
+                <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;">
+                <!--adding span-->
+                <span class="badge badge-pill badge-danger" id="cart-count" style="width:25px; letter-spacing: .15px;">
+                    <?php
+                    $stmt = $conn->prepare("SELECT * FROM Basket WHERE userID=:userID");
+
+                    $stmt->bindParam(':userID', $_SESSION['userID'], PDO::PARAM_INT);
+            
+                    $stmt->execute();
+                    //loop through the basket database based of the userID
+            
+                    while($basketRow = $stmt->fetch(PDO::FETCH_ASSOC)){
+                        $productQuantity = $basketRow['quantBasket'];
+                        $count+= $productQuantity;
+                    }
+                    if ($count>0){
+                        echo $count;
+                    }
+                    else{
+                        echo "0";
+                    }
+
+                    ?>
+            </a></li> <!--Cart-->
+                <!-- account pages depending on the role --> 
+                <?php
+                if(isset($_SESSION)){
+                    if ($_SESSION['role']==2){
+                        echo '<li><a href = "adminPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+                        
+                    }
+                    else{
+                        echo '<li><a href = "accountPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+
+                    }
+                }
+                
+                else{
+                    echo '<li><a href = "login.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> ';
+
+                }
+                ?>
             </ul>
         </div>
     </nav>

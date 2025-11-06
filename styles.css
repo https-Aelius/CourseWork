@@ -578,12 +578,15 @@ label{
 }
 .mainImage{
     padding:60px 0;
+    
+    
 }
 .mainImage img{
     width:100%;
     max-width: 420px;
     border-radius:10px;
     box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    
 }
 .thumbnailList {
     margin-top: 15px;
@@ -881,6 +884,8 @@ font-size: 16px;
     position: relative;
     border: 1px solid #2c2c2c2c;
     background: #ffffff;
+    margin-top:25px; 
+    margin-bottom:25px;
 }
 /*
 @media screen and (min-width: 990px) {
@@ -1089,4 +1094,32 @@ font-size: 16px;
     color:#03045e;
     text-decoration: underline;
     
+}
+.search-header{
+    margin-bottom: 5rem;
+    padding: 0 5rem;
+    max-width: var(--page-width);
+    margin: 0 auto;
+}
+.general-search-box{
+    padding: 2.2rem 1.5rem .8rem 2rem;
+    margin: 1px;
+    border-bottom: 1px solid black !important;
+    background: transparent !important;
+    height: 4.5rem;
+    border:0;
+    width:60%;
+    margin-top:35px;
+    align-self: center;
+}
+.general-search-box-label{
+    font-size: 1rem;
+    top: 9px;
+    left: 33px;
+    letter-spacing: .04rem;
+}
+.general-search-form{
+    position: relative;
+    width: 100%;
+    display: block;
 }

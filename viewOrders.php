@@ -56,7 +56,24 @@
                     </form>
                 </li>
                 <li><a type='button' data-toggle='modal' data-target='#basketModal'><img src = "online-shopping.png" style = "width:18px; height:18px;"></a></li> <!--Cart-->
-                <li><a href = ""><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> <!-- User picture -->
+                <!-- account pages depending on the role --> 
+                <?php
+                if(isset($_SESSION)){
+                    if ($_SESSION['role']==2){
+                        echo '<li><a href = "adminPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+                        
+                    }
+                    else{
+                        echo '<li><a href = "accountPage.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li>';
+
+                    }
+                }
+                
+                else{
+                    echo '<li><a href = "login.php"><img src = "avatar.png" style = "height:17px; width:17px;"></a></li> ';
+
+                }
+                ?>
             </ul>
         </div>
     </nav>
